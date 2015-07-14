@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Adopt Planet</string>
+
+
+    <string name="title_activity_login">Login</string>
+
+    <string name="forgot_password">Forgot password?</string>
+    <string name="create_account">Create account</string>
+    <string name="sign_up">Sign up</string>
+    <string name="username">Username</string>
+    <string name="log_in">Log in</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="next">Next</string>
+    <string name="password">Password</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_sign_up_choose">SignUpChooseActivity</string>
+
+    <string name="pet_account_description_1">
+        Pets have the right to socialize too.
+        But how? Through you! In a sense, be
+        your pet\'s social media guru. Use Moofio
+        on behalf of your pet and help her/him
+    </string>
+    <string name="title_activity_registration_follow">RegistrationFollowActivity</string>
+    <string name="title_activity_main_feed">MainFeedActivity</string>
+    <string name="title_activity_pet_tab">PetTabActivity</string>
+    <string name="title_activity_event_tab">EventTabActivity</string>
+</resources>

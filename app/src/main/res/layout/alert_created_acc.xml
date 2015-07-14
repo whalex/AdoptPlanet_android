@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="350dp"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:gravity="center_horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="190dp"
+        android:id="@+id/imageView16"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/z_grats_pic"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="CONGRATSULATIONS !"
+        android:id="@+id/textView14"
+        android:textColor="@color/gray_d"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="You just created account!"
+        android:id="@+id/textView15"
+        android:textColor="@color/gray_d"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="#ffeeeeee">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="You may create your first pet account!"
+            android:id="@+id/textView16"
+            android:textColor="@color/gray"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="I`ll add pet account later"
+            android:id="@+id/textView17"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/gray_d"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Create pet account"
+        android:id="@+id/button6"
+        android:textAllCaps="false"
+        android:background="@color/orange"
+        android:textSize="18sp"/>
+</LinearLayout>

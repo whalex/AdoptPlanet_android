@@ -1,0 +1,76 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".StartingScreenActivity"
+                android:background="@drawable/z_bg1">
+
+    <view
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="android.support.v4.view.ViewPager"
+        android:id="@+id/starting_screen_view_pager"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView18"
+        android:layout_above="@+id/starting_screen_indicator"/>
+
+    <com.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/starting_screen_indicator"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <ImageView
+        android:layout_width="280dp"
+        android:layout_height="220dp"
+        android:id="@+id/imageView18"
+        android:src="@drawable/z_logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Log in"
+            android:id="@+id/starting_screen_login"
+            android:onClick="handle_login"
+            android:layout_weight="1"
+            android:background="@color/orange"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Sign up"
+            android:id="@+id/starting_screen_sign_up"
+            android:layout_weight="1"
+            android:onClick="handle_signup"
+            android:background="@color/orange"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Try it out"
+            android:id="@+id/starting_screen_test"
+            android:layout_weight="1"
+            android:onClick="handle_try"
+            android:background="@color/orange"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</RelativeLayout>

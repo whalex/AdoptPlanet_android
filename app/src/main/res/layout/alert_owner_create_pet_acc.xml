@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="350dp"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:gravity="center_vertical|center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Create your first pet profile"
+            android:id="@+id/textView11"
+            android:textColor="@color/black_t"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="#ffeeeeee">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Try it out!"
+            android:id="@+id/textView12"
+            android:textColor="@color/gray"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="I`ll add my pet later"
+            android:id="@+id/textView13"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black_t"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Create profile"
+        android:id="@+id/button5"
+        android:textAllCaps="false"
+        android:background="@color/orange"
+        android:textSize="18sp"/>
+</LinearLayout>

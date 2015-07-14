@@ -1,0 +1,123 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="adoptplanet.com.adoptplanet.view.SignUpActivity"
+                android:background="@drawable/z_bg">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="80dp"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/imageView7"
+            android:src="@drawable/z_mini_logo"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Sign up via"
+            android:id="@+id/textView4"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/sing_up_twitter"
+                android:layout_margin="5dp"
+                android:onClick="handleSocial"
+                android:src="@drawable/z_tw"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/sing_up_facebook"
+                android:onClick="handleSocial"
+                android:layout_margin="5dp"
+                android:src="@drawable/z_fb"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/sing_up_gplus"
+                android:onClick="handleSocial"
+                android:layout_margin="5dp"
+                android:src="@drawable/z_gplus"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="or"
+            android:id="@+id/textView3"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/sign_up_username"
+            android:layout_gravity="center_horizontal"
+            android:hint="@string/e_mail"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:text="Username"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/sign_up_email"
+            android:layout_gravity="center_horizontal"
+            android:hint="@string/e_mail"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/sign_up_password"
+            android:layout_gravity="center_horizontal"
+            android:hint="@string/password"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:id="@+id/sign_up_sign_up"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/orange"
+            android:bottomRightRadius="20dp"
+            android:bottomLeftRadius="20dp"
+            android:topLeftRadius="20dp"
+            android:topRightRadius="20dp"
+            android:onClick="handleSignUp"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+</RelativeLayout>
