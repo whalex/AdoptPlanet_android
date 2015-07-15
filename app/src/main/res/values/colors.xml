@@ -11,5 +11,6 @@
     <color name="gray_d">#ff555555</color>
     <!--<color name="blue_d">#ff02243d</color>-->
     <color name="blue">#57BEE9</color>
+    <color name="blue_d">#00A2E9</color>
 
 </resources>

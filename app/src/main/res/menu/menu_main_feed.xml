@@ -3,4 +3,8 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="adoptplanet.com.adoptplanet.view.MainFeedActivity">
 
+      <item android:id="@+id/main_feed_menu_search"
+            android:icon="@drawable/z_search_active"
+            android:title="Search"
+            app:showAsAction="ifRoom"/>
 </menu>

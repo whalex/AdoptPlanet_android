@@ -1,15 +1,15 @@
 package adoptplanet.com.adoptplanet.view;
 
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
-import android.app.LocalActivityManager;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
+
+import android.support.v7.app.ActionBar;
+
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -38,7 +39,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 @SuppressWarnings("deprecation")
-public class MainFeedActivity extends ActionBarActivity {
+public class MainFeedActivity extends AppCompatActivity {
 
     public static final String TAG = "MainFeedAcivity";
 
@@ -47,12 +48,15 @@ public class MainFeedActivity extends ActionBarActivity {
     @Bind(R.id.main_feed_petlist_grid) GridView pet_grid_view;
     @Bind(R.id.main_feed_eventlist_list) ListView event_list_view;
 
+    @Bind(R.id.main_feed_toolbar) Toolbar toolbar;
 
     PetListAdapter pet_adapter;
     EventListAdapter event_adapter;
 
     ArrayList<Pet> pet_list = new ArrayList<>();
     ArrayList<Event> event_list = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,23 +74,28 @@ public class MainFeedActivity extends ActionBarActivity {
         ts.setIndicator("Events");
         th.addTab(ts);
 
-//        TabWidget tw = th.getTabWidget();
-//
-//        for (int i = 0; i < tw.getTabCount(); i++){
-//            View v = tw.getChildTabViewAt(i);
-//
-//            TextView tv = (TextView)v.findViewById(android.R.id.title);
-//            if(tv == null) {
-//                continue;
-//            }
-//            v.setBackgroundResource(R.drawable.z_cutsom_tab_selector);
-//        }
+        LayoutInflater inflater = getLayoutInflater();
 
-        for (int i = 0; i < 10; i++){
-            Pet temp = new Pet();
-            temp.name = "Pet " + i ;
-            pet_list.add(temp);
-        }
+        LinearLayout bar_lay = (LinearLayout) inflater.inflate(R.layout.bar_main_feed1, null);
+        //toolbar.addView(bar_lay);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                return false;
+            }
+        });
+
+
+        setSupportActionBar(toolbar);
+        ActionBar action_bar = getSupportActionBar();
+        action_bar.setDefaultDisplayHomeAsUpEnabled(true);
+        action_bar.setHomeAsUpIndicator(R.drawable.z_menu_icon);
+        action_bar.setDisplayUseLogoEnabled(true);
+        action_bar.setLogo(R.drawable.z_action_bar_logo_fixed);
+        action_bar.setTitle("");
+        action_bar.setDisplayShowHomeEnabled(true);
+        //action_bar.setDisplayHomeAsUpEnabled(true);
 
         pet_adapter = new PetListAdapter(this, pet_list);
         pet_grid_view.setAdapter(pet_adapter);
@@ -110,8 +119,8 @@ public class MainFeedActivity extends ActionBarActivity {
                     //publishProgress(temp);
                     pet_list.add(temp);
                     pet_adapter.notifyDataSetChanged();
-                    Log.d(TAG, "Up Pet! Name:" + temp.name);
-                    Log.d(TAG, "Size: " + pet_list.size());
+                    //Log.d(TAG, "Up Pet! Name:" + temp.name);
+                    //Log.d(TAG, "Size: " + pet_list.size());
                 }
             }
         });
@@ -133,22 +142,11 @@ public class MainFeedActivity extends ActionBarActivity {
                     //publishProgress(temp);
                     event_list.add(temp);
                     event_adapter.notifyDataSetChanged();
-                    Log.d(TAG, "Up Event! Name:" + temp.name);
-                    Log.d(TAG, "Size: " + event_list.size());
+                    //Log.d(TAG, "Up Event! Name:" + temp.name);
+                    //Log.d(TAG, "Size: " + event_list.size());
                 }
             }
         });
-
-        for (int i = 0; i < 10; i++){
-            Event temp = new Event();
-            temp.name = "Event " + i ;
-            event_list.add(temp);
-        }
-        event_adapter.notifyDataSetChanged();
-
-
-        pet_adapter.notifyDataSetChanged();
-
     }
 
     @Override
