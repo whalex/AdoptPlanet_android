@@ -43,6 +43,10 @@
             android:name=".view.EventTabActivity"
             android:label="@string/title_activity_event_tab" >
         </activity>
+        <activity
+            android:name=".view.SearchPetActivity"
+            android:label="@string/title_activity_search_pet" >
+        </activity>
     </application>
 
 </manifest>

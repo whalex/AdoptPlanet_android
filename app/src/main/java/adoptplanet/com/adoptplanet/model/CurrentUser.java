@@ -5,6 +5,8 @@ package adoptplanet.com.adoptplanet.model;
  */
 public class CurrentUser {
 
+    public static final int LOAD_LIMIT = 30;
+
     public static String id;
     public static String email;
 

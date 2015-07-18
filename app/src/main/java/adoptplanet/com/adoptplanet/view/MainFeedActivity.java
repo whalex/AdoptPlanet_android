@@ -1,6 +1,7 @@
 package adoptplanet.com.adoptplanet.view;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -12,14 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.TabWidget;
-import android.widget.TextView;
 
 
 import com.parse.FindCallback;
@@ -32,7 +29,7 @@ import java.util.List;
 
 import adoptplanet.com.adoptplanet.R;
 import adoptplanet.com.adoptplanet.controller.EventListAdapter;
-import adoptplanet.com.adoptplanet.controller.PetListAdapter;
+import adoptplanet.com.adoptplanet.controller.PetGridviewAdapter;
 import adoptplanet.com.adoptplanet.model.Event;
 import adoptplanet.com.adoptplanet.model.Pet;
 import butterknife.Bind;
@@ -50,7 +47,7 @@ public class MainFeedActivity extends AppCompatActivity {
 
     @Bind(R.id.main_feed_toolbar) Toolbar toolbar;
 
-    PetListAdapter pet_adapter;
+    PetGridviewAdapter pet_adapter;
     EventListAdapter event_adapter;
 
     ArrayList<Pet> pet_list = new ArrayList<>();
@@ -78,13 +75,13 @@ public class MainFeedActivity extends AppCompatActivity {
 
         LinearLayout bar_lay = (LinearLayout) inflater.inflate(R.layout.bar_main_feed1, null);
         //toolbar.addView(bar_lay);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                return false;
-            }
-        });
+//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//
+//                return false;
+//            }
+//        });
 
 
         setSupportActionBar(toolbar);
@@ -97,7 +94,7 @@ public class MainFeedActivity extends AppCompatActivity {
         action_bar.setDisplayShowHomeEnabled(true);
         //action_bar.setDisplayHomeAsUpEnabled(true);
 
-        pet_adapter = new PetListAdapter(this, pet_list);
+        pet_adapter = new PetGridviewAdapter(this, pet_list);
         pet_grid_view.setAdapter(pet_adapter);
 
         event_adapter = new EventListAdapter(this, event_list);
@@ -168,6 +165,13 @@ public class MainFeedActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.main_feed_menu_search){
+            Intent search_intent = new Intent(this, SearchPetActivity.class);
+            startActivity(search_intent);
+            Log.d(TAG, "!!!!!!!!!!!!!!!!!!!");
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -175,9 +179,9 @@ public class MainFeedActivity extends AppCompatActivity {
     class FeedPetLoader extends AsyncTask<Void, Pet, Void> {
 
         ArrayList<Pet> petlist;
-        PetListAdapter adapter;
+        PetGridviewAdapter adapter;
 
-        public FeedPetLoader(ArrayList<Pet> petlist, PetListAdapter adapter, int offset){
+        public FeedPetLoader(ArrayList<Pet> petlist, PetGridviewAdapter adapter, int offset){
             this.petlist = petlist;
             this.adapter = adapter;
         }

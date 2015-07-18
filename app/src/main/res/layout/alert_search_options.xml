@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="350dp"
+              android:layout_height="wrap_content"
+              android:background="@color/white">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@color/gray_l">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="SEARCH OPTIONS"
+            android:id="@+id/textView7"
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="How far would you be willing to drive?"
+        android:id="@+id/textView8"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/gray_l"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <!--<20 button-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="&lt;20"
+            android:id="@+id/alert_search_20_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders_active"
+            android:textColor="@color/white"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="50"
+            android:id="@+id/alert_search_50_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders"
+            android:textColor="@color/gray_l"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="100"
+            android:id="@+id/alert_search_100_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders"
+            android:textColor="@color/gray_l"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="300"
+            android:id="@+id/alert_search_300_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders"
+            android:textColor="@color/gray_l"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=">300"
+            android:id="@+id/alert_search_300p_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders"
+            android:textColor="@color/gray_l"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Gender"
+        android:id="@+id/textView28"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/gray_l"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <!--male-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Male"
+            android:id="@+id/alert_search_male_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders_active"
+            android:textColor="@color/white"
+            android:layout_weight="1"/>
+        <!--female-->
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Female"
+            android:id="@+id/alert_search_female_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders"
+            android:textColor="@color/gray_l"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Age"
+        android:id="@+id/f3"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/gray_l"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <!--baby-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Baby"
+            android:id="@+id/alert_search_baby_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders_active"
+            android:textColor="@color/white"
+            android:layout_weight="1"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Young"
+            android:id="@+id/alert_search_young_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders"
+            android:textColor="@color/gray_l"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Adult"
+            android:id="@+id/alert_search_adult_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders"
+            android:textColor="@color/gray_l"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Senior"
+            android:id="@+id/alert_search_senior_b"
+            android:textAllCaps="false"
+            android:background="@drawable/z_layout_borders"
+            android:textColor="@color/gray_l"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Breed"
+        android:id="@+id/textView34"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/z_layout_borders"
+        android:layout_marginTop="5dp"
+        android:id="@+id/alert_search_breedlay"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="All breed"
+            android:id="@+id/textView35"
+            android:textColor="@color/gray_l"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Set options"
+        android:id="@+id/alert_search_setb"
+        android:textAllCaps="false"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/orange"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

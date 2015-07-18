@@ -14,7 +14,7 @@
     <bool name="default_title_indicator_selected_bold">true</bool>
     <bool name="default_underline_indicator_fades">true</bool>
     <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>
-    <color name="default_circle_indicator_page_color">#00000000</color>
+    <color name="default_circle_indicator_page_color">#99FFFFFF</color>
     <color name="default_circle_indicator_stroke_color">#FFDDDDDD</color>
     <color name="default_line_indicator_selected_color">#FF33B5E5</color>
     <color name="default_line_indicator_unselected_color">#FFBBBBBB</color>
@@ -39,8 +39,8 @@
     <declare-styleable name="ViewPagerIndicator"><attr format="reference" name="vpiCirclePageIndicatorStyle"/><attr format="reference" name="vpiIconPageIndicatorStyle"/><attr format="reference" name="vpiLinePageIndicatorStyle"/><attr format="reference" name="vpiTitlePageIndicatorStyle"/><attr format="reference" name="vpiTabPageIndicatorStyle"/><attr format="reference" name="vpiUnderlinePageIndicatorStyle"/></declare-styleable>
     <!-- From: file:/C:/Users/Alexeich/AndroidStudioProjects/AdoptPlanet/slides/src/main/res/values/vpi__defaults.xml -->
     <eat-comment/>
-    <dimen name="default_circle_indicator_radius">3dp</dimen>
-    <dimen name="default_circle_indicator_stroke_width">1dp</dimen>
+    <dimen name="default_circle_indicator_radius">6dp</dimen>
+    <dimen name="default_circle_indicator_stroke_width">2dp</dimen>
     <dimen name="default_line_indicator_gap_width">4dp</dimen>
     <dimen name="default_line_indicator_line_width">12dp</dimen>
     <dimen name="default_line_indicator_stroke_width">1dp</dimen>
