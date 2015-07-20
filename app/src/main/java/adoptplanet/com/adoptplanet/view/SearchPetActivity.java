@@ -134,17 +134,14 @@ public class SearchPetActivity extends ActionBarActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d(TAG, "!Q!");
                 onQueryTextChange(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.d(TAG, "!C!");
                 if (adapter != null)
                     adapter.getFilter().filter(newText.toLowerCase());
-                Log.d(TAG, "FILTER: " + newText);
                 return false;
             }
         });

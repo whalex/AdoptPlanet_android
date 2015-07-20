@@ -1,5 +1,7 @@
 package adoptplanet.com.adoptplanet.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Alexeich on 08.07.2015.
  */
@@ -9,5 +11,11 @@ public class CurrentUser {
 
     public static String id;
     public static String email;
+    private static String pass;
+
+    public ArrayList<Pet> pets = new ArrayList<>();
+
+    public static void setPass(String pass){CurrentUser.pass = pass;}
+    public static String getPass(){return CurrentUser.pass;}
 
 }

@@ -2,8 +2,18 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="adoptplanet.com.adoptplanet.view.RegistrationFollowActivity">
-    <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
-          android:orderInCategory="100"
-          app:showAsAction="never"/>
+
+      <item android:id="@+id/menu_reg_follow_search_field"
+            android:title="Search Field"
+
+            app:showAsAction="collapseActionView|ifRoom"
+            android:icon="@drawable/z_search"
+            app:actionViewClass="android.support.v7.widget.SearchView" />
+
+
+      <item android:id="@+id/menu_reg_follow_settings"
+            android:title="Settings"
+            android:icon="@drawable/z_icon_settings"
+            android:orderInCategory="100"
+            app:showAsAction="ifRoom"/>
 </menu>

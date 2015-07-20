@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.parse.Parse;
+import com.parse.ParseUser;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 
@@ -54,7 +55,7 @@ public class StartingScreenActivity extends Activity {
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "9maWSgFEvVDhE2S38JjLHWjkrriEXlSf0MGT5BrO", "aZhLgSlogo10qICrHMat9xTaQJiMJpieg1sSikOt");
-
+        ParseUser.enableRevocableSessionInBackground();
 
         TextPagerAdapter adapter = new TextPagerAdapter();
         pager.setAdapter(adapter);

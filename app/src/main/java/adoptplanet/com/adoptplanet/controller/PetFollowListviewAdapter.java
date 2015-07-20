@@ -1,7 +1,6 @@
 package adoptplanet.com.adoptplanet.controller;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import adoptplanet.com.adoptplanet.utils.CircleTransform;
 /**
  * Created by Alexeich on 15.07.2015.
  */
-public class PetListviewAdapter extends BaseAdapter implements Filterable {
+public class PetFollowListviewAdapter extends BaseAdapter implements Filterable {
 
     public static final String TAG = "PetListviewAdapter";
 
@@ -35,7 +34,7 @@ public class PetListviewAdapter extends BaseAdapter implements Filterable {
 
     Context context;
 
-    public PetListviewAdapter(Context context, ArrayList<Pet> list){
+    public PetFollowListviewAdapter(Context context, ArrayList<Pet> list){
         this.original_list = list;
         this.filtered_list = list;
         this.context = context;
