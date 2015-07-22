@@ -30,4 +30,22 @@
     <string name="title_activity_event_tab">EventTabActivity</string>
     <string name="title_activity_search_pet">SearchPetActivity</string>
     <string name="title_activity_add_pet">AddPetActivity</string>
+
+    <string name="toast_chose_type_first">Choose pet type first!</string>
+
+
+    <!--PET TYPES-->
+    <string-array name="pet_types">
+        <item name="type_dog">Dog</item>
+        <item name="type_cat">Cat</item>
+        <item name="type_horse">Horse</item>
+        <item name="type_fish">Fish</item>
+        <item name="type_bird">Bird</item>
+        <item name="type_hamster">Hamster</item>
+        <item name="type_ferret">Ferret</item>
+        <item name="type_rabbit">Rabbit</item>
+        <item name="type_others">Others</item>
+    </string-array>
+
+
 </resources>

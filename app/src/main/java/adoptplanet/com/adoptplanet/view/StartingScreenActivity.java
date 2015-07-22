@@ -24,6 +24,8 @@ import com.viewpagerindicator.TitlePageIndicator;
 
 
 import adoptplanet.com.adoptplanet.R;
+import adoptplanet.com.adoptplanet.model.Pet;
+import adoptplanet.com.adoptplanet.utils.DataParser;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -62,6 +64,8 @@ public class StartingScreenActivity extends Activity {
         indicator.setStrokeWidth(0);
         indicator.setViewPager(pager);
 
+        // load breeds
+        DataParser.uploadBreeds(this, Pet.TYPE_CAT);
 
     }
 

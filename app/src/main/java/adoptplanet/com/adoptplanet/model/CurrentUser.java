@@ -13,8 +13,6 @@ public class CurrentUser {
     public static String email;
     private static String pass;
 
-    public ArrayList<Pet> pets = new ArrayList<>();
-
     public static void setPass(String pass){CurrentUser.pass = pass;}
     public static String getPass(){return CurrentUser.pass;}
 
