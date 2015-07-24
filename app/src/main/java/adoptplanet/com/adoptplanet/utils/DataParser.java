@@ -27,7 +27,7 @@ public class DataParser {
 
         pet.name = parse.getString("name");
         pet.gender = parse.getInt("gender");
-        pet.breed = parse.getString("breed");
+        pet.breed = parse.getInt("breed");
         pet.age = parse.getInt("age");
         pet.photo_url = parse.getString("photo");
         pet.description = parse.getString("description");

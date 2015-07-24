@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Choose Dog Breed"
-        android:id="@+id/textView24"
+        android:id="@+id/alert_breed_choose_top_text"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"/>
@@ -19,7 +19,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/editText"
+        android:id="@+id/alert_breed_choose_search"
         android:layout_gravity="center_horizontal"
         android:background="@color/gray_l"
         android:layout_marginLeft="10dp"
@@ -28,19 +28,30 @@
         android:layout_margin="10dp"
         android:hint="Search..."/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Current: none"
+        android:id="@+id/alert_breed_choose_choose"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black"/>
+
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:id="@+id/listView"
+        android:layout_height="250dp"
+        android:id="@+id/alert_breed_choose_listview"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Choose"
-        android:id="@+id/button"
+        android:id="@+id/alert_breed_choose_button"
         android:textAllCaps="false"
         android:background="@color/orange"/>
 

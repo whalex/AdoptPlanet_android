@@ -110,7 +110,7 @@ public class MainFeedActivity extends AppCompatActivity {
                     temp.id = pet_parse.getString("id");
                     temp.age = pet_parse.getInt("age");
                     temp.size = pet_parse.getInt("size");
-                    temp.breed = pet_parse.getString("breed");
+                    temp.breed = pet_parse.getInt("breed");
                     temp.description = pet_parse.getString("description");
                     temp.photo_url = pet_parse.getString("photo");
                     //publishProgress(temp);

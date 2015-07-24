@@ -66,6 +66,7 @@ public class StartingScreenActivity extends Activity {
 
         // load breeds
         DataParser.uploadBreeds(this, Pet.TYPE_CAT);
+        DataParser.uploadBreeds(this, Pet.TYPE_DOG);
 
     }
 

@@ -31,7 +31,7 @@ public class Pet implements Serializable{
     public int age;
     public String photo_url;
     public Uri photo_uri;
-    public String breed;
+    public int breed;
     public int type = -1;
     public int size;
     public int gender;

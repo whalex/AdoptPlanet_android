@@ -12,8 +12,10 @@
         <item name="actionBarTabStyle">@style/ActionBarTabStyle.Example</item>
         <item name="actionBarItemBackground">@drawable/selectable_background_example</item>
         <item name="actionBarStyle">@style/ActionBarStyle</item>
+    </style>
 
-
+    <style name="AppThemeBlackText" parent="AppTheme">
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="ActionBarTabStyle.Example" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">

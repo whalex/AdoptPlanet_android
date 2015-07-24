@@ -152,8 +152,8 @@ public class SignUpActivity extends Activity {
                 if (e == null){
                     Toast.makeText(context, "Registration succesful", Toast.LENGTH_LONG).show();
                     CurrentUser.email = to_register.getString("email");
-                    //Intent intent = new Intent(context, RegistrationFollowActivity.class);
-                    //startActivity(intent);
+                    Intent intent = new Intent(context, RegistrationFollowActivity.class);
+                    startActivity(intent);
                 }
                 else{
                     Log.d("SignUpActivity", "CODE: " + e.getCode());

@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -84,7 +85,6 @@ public class RegistrationFollowActivity extends AppCompatActivity {
                 if (e == null){
                     for (ParseObject parse : mList){
                         list.add(DataParser.parsePet(parse));
-
                     }
                 }
                 else{
@@ -114,7 +114,7 @@ public class RegistrationFollowActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void nextActivity(){
+    public void handleNextActivity(View v){
         Intent intent = new Intent(this, AddPetActivity.class);
         startActivity(intent);
 
