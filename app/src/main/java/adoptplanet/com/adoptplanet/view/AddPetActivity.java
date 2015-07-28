@@ -36,6 +36,7 @@ import java.io.File;
 import adoptplanet.com.adoptplanet.R;
 import adoptplanet.com.adoptplanet.controller.AlertBuilder;
 import adoptplanet.com.adoptplanet.model.CacheHolder;
+import adoptplanet.com.adoptplanet.model.CurrentUser;
 import adoptplanet.com.adoptplanet.model.Pet;
 import adoptplanet.com.adoptplanet.utils.CircleTransform;
 import butterknife.Bind;
@@ -173,9 +174,9 @@ public class AddPetActivity extends AppCompatActivity {
                             pet_updt.put("age", temp_pet.age);
                             pet_updt.put("breed", temp_pet.breed);
                             pet_updt.put("type", temp_pet.type);
-                            //pet_updt.put("description", temp_pet.description);
                             pet_updt.put("gender", temp_pet.gender);
                             pet_updt.put("size", temp_pet.size);
+                            pet_updt.put("owner", CurrentUser.id);
                             pet_updt.saveInBackground(new SaveCallback() {
                                 @Override
                                 public void done(ParseException e) {
@@ -200,7 +201,11 @@ public class AddPetActivity extends AppCompatActivity {
                 pet_p.put("type", temp_pet.type);
                 pet_p.put("gender", temp_pet.gender);
                 pet_p.put("size", temp_pet.size);
-                pet_p.put("photo_f", new File(temp_pet.photo_uri.getPath()));
+                pet_p.put("owner", CurrentUser.id);
+
+                if (temp_pet.photo_uri != null)
+                    pet_p.put("photo_f", new File(temp_pet.photo_uri.getPath()));
+
                 pet_p.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
@@ -211,21 +216,17 @@ public class AddPetActivity extends AppCompatActivity {
                         else{
                             e.printStackTrace();
                         }
-
                     }
                 });
             }
-
         }
-
-
-
     }
 
     public void handlePhoto(View view) {
-        Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(pickPhoto, ID_GALLERY);
+        Intent pickPhoto = new Intent();
+        pickPhoto.setType("image/*");
+        pickPhoto.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(pickPhoto, "Select Picture"), ID_GALLERY);
     }
 
     @Override

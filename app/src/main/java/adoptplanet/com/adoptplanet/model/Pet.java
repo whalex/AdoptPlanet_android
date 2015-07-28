@@ -32,10 +32,18 @@ public class Pet implements Serializable{
     public String photo_url;
     public Uri photo_uri;
     public int breed;
-    public int type = -1;
+    public int type;
     public int size;
     public int gender;
     public String description;
+
+    public Pet(){
+        type = -1;
+        size = -1;
+        age = -1;
+        gender = GENDER_MALE;
+        breed = -1;
+    }
 
     @Override
     protected Object clone() throws CloneNotSupportedException {

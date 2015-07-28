@@ -45,7 +45,6 @@ public class SearchPetActivity extends ActionBarActivity {
 
     public static final int MALE = 1;
     public static final int FEMALE = 2;
-    //public static final int EVERYONE = 3;
 
     public static final int BABY_ID = 1;
     public static final int YOUNG_ID = 2;
@@ -84,7 +83,6 @@ public class SearchPetActivity extends ActionBarActivity {
     private PetListviewAdapter adapter;
 
     private int index = 0;
-    private String search_text="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

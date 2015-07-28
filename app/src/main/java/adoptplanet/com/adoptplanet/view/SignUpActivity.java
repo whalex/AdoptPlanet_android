@@ -64,7 +64,8 @@ public class SignUpActivity extends Activity {
             to_register.put("username_", username);
             to_register.put("username", email);
             to_register.put("email", email);
-            to_register.put("password", password);
+            to_register.setPassword(password);
+
 
 
 
@@ -152,6 +153,9 @@ public class SignUpActivity extends Activity {
                 if (e == null){
                     Toast.makeText(context, "Registration succesful", Toast.LENGTH_LONG).show();
                     CurrentUser.email = to_register.getString("email");
+                    CurrentUser.id = to_register.getObjectId();
+                    Log.d("SignUpActivity", "Email: " + CurrentUser.email + " ID: " + CurrentUser.id);
+
                     Intent intent = new Intent(context, RegistrationFollowActivity.class);
                     startActivity(intent);
                 }

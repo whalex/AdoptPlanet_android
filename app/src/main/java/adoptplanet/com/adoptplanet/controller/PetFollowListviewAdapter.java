@@ -18,17 +18,15 @@ import adoptplanet.com.adoptplanet.R;
 import adoptplanet.com.adoptplanet.model.Pet;
 import adoptplanet.com.adoptplanet.utils.CircleTransform;
 
-/**
- * Created by Alexeich on 15.07.2015.
- */
 public class PetFollowListviewAdapter extends BaseAdapter implements Filterable {
 
-    public static final String TAG = "PetListviewAdapter";
+    public static final String TAG = "PetFollowListviewAdapter";
 
     LayoutInflater inflater;
 
     ArrayList<Pet> original_list;
     ArrayList<Pet> filtered_list;
+    ArrayList<Pet> follow_list;
 
     ItemFilter filter = new ItemFilter();
 
@@ -37,6 +35,7 @@ public class PetFollowListviewAdapter extends BaseAdapter implements Filterable 
     public PetFollowListviewAdapter(Context context, ArrayList<Pet> list){
         this.original_list = list;
         this.filtered_list = list;
+        follow_list = new ArrayList<>();
         this.context = context;
     }
 
@@ -85,7 +84,6 @@ public class PetFollowListviewAdapter extends BaseAdapter implements Filterable 
                     .transform(new CircleTransform())
                     .into(handler.photo);
 
-
         return convertView;
     }
 
@@ -129,7 +127,10 @@ public class PetFollowListviewAdapter extends BaseAdapter implements Filterable 
             results.count = filteredResults.size();
             return results;
         }
+    }
 
-
+    public ArrayList<String> getFollowing(){
+        ArrayList<String> follows = new ArrayList<>();
+        return follows;
     }
 }
