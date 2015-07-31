@@ -33,6 +33,8 @@
 
     <string name="toast_chose_type_first">Choose pet type first!</string>
 
+    <string name="choose_type">Choose type</string>
+    <string name="choose_breed">Choose breed</string>
 
     <!--PET TYPES-->
     <string-array name="pet_types">

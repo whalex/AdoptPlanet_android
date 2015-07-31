@@ -5,9 +5,8 @@
 
       <item android:id="@+id/menu_reg_follow_search_field"
             android:title="Search Field"
-
-            app:showAsAction="collapseActionView|ifRoom"
             android:icon="@drawable/z_search"
+            app:showAsAction="collapseActionView|always"
             app:actionViewClass="android.support.v7.widget.SearchView" />
 
 

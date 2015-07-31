@@ -4,13 +4,11 @@
                 android:layout_height="match_parent"
                 tools:context="adoptplanet.com.adoptplanet.view.RegistrationFollowActivity">
 
-<android.support.v7.widget.Toolbar
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/registration_follow_toolbar"
-    android:background="@color/blue">
-
-</android.support.v7.widget.Toolbar>
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/registration_follow_toolbar"
+        android:background="@color/blue"/>
 
     <Button
         android:layout_width="match_parent"

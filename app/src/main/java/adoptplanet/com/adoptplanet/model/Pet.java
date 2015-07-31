@@ -2,6 +2,7 @@ package adoptplanet.com.adoptplanet.model;
 
 import android.net.Uri;
 
+import java.io.File;
 import java.io.Serializable;
 
 import adoptplanet.com.adoptplanet.R;
@@ -28,14 +29,17 @@ public class Pet implements Serializable{
 
     public String name;
     public String id;
+    public String owner_id;
     public int age;
     public String photo_url;
-    public Uri photo_uri;
+    public String photo_local;
     public int breed;
     public int type;
     public int size;
     public int gender;
     public String description;
+    public File photo;
+
 
     public Pet(){
         type = -1;

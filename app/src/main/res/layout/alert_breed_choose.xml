@@ -26,7 +26,8 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_margin="10dp"
-        android:hint="Search..."/>
+        android:hint="Search..."
+        android:paddingLeft="5dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,5 +55,14 @@
         android:id="@+id/alert_breed_choose_button"
         android:textAllCaps="false"
         android:background="@color/orange"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add custom"
+        android:id="@+id/alert_breed_add_button"
+        android:textAllCaps="false"
+        android:background="@color/orange"
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>

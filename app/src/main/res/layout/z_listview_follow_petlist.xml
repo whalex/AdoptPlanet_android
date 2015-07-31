@@ -3,6 +3,7 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:id="@+id/z_pet_listview_linear_layout"
               android:background="@color/white">
 
     <ImageView
@@ -41,7 +42,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView5"
+        android:id="@+id/z_pet_listview_check_image"
         android:src="@drawable/z_check_box_passive"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"/>

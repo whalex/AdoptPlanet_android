@@ -1,6 +1,7 @@
 package adoptplanet.com.adoptplanet.controller;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -20,7 +22,7 @@ import adoptplanet.com.adoptplanet.utils.CircleTransform;
 
 public class PetFollowListviewAdapter extends BaseAdapter implements Filterable {
 
-    public static final String TAG = "PetFollowListviewAdapter";
+    public static final String TAG = "PetFollowAdapter";
 
     LayoutInflater inflater;
 
@@ -56,19 +58,20 @@ public class PetFollowListviewAdapter extends BaseAdapter implements Filterable 
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Pet pet = filtered_list.get(position);
-        Handler handler;
+        final Pet pet = filtered_list.get(position);
+        final Handler handler;
 
         if (convertView == null){
             handler = new Handler();
             inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.z_listview_petlist, null);
+            convertView = inflater.inflate(R.layout.z_listview_follow_petlist, null);
             convertView.setTag(handler);
 
             handler.photo = (ImageView) convertView.findViewById(R.id.z_pet_listview_photo);
             handler.name = (TextView) convertView.findViewById(R.id.z_pet_listview_name);
             handler.age_breed = (TextView) convertView.findViewById(R.id.z_pet_listview_age_breed);
-
+            handler.layout = (LinearLayout) convertView.findViewById(R.id.z_pet_listview_linear_layout);
+            handler.check_image = (ImageView) convertView.findViewById(R.id.z_pet_listview_check_image);
         }
         else{
             handler = (Handler) convertView.getTag();
@@ -78,11 +81,36 @@ public class PetFollowListviewAdapter extends BaseAdapter implements Filterable 
 
         handler.age_breed.setText("Age: " + pet.age + " Breed: " + pet.breed);
 
-        if (pet.photo_url != null)
+        Log.d(TAG, "PET ID: " + pet.id);
+
+        if (follow_list.contains(pet)){
+            handler.check_image.setImageDrawable(context.getResources().getDrawable(R.drawable.z_check_box_checked));
+        }
+        else{
+            handler.check_image.setImageDrawable(context.getResources().getDrawable(R.drawable.z_check_box_passive));
+        }
+
+
+        if (pet.photo_url != null && pet.photo_url.length() != 0) {
             Picasso.with(context)
                     .load(pet.photo_url)
                     .transform(new CircleTransform())
                     .into(handler.photo);
+        }
+
+        handler.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (follow_list.contains(pet)){
+                    follow_list.remove(pet);
+                    handler.check_image.setImageDrawable(context.getResources().getDrawable(R.drawable.z_check_box_passive));
+                }
+                else{
+                    follow_list.add(pet);
+                    handler.check_image.setImageDrawable(context.getResources().getDrawable(R.drawable.z_check_box_checked));
+                }
+            }
+        });
 
         return convertView;
     }
@@ -94,9 +122,11 @@ public class PetFollowListviewAdapter extends BaseAdapter implements Filterable 
 
     class Handler {
 
+        LinearLayout layout;
         ImageView photo;
         TextView age_breed;
         TextView name;
+        ImageView check_image;
     }
 
     private class ItemFilter extends Filter {
@@ -130,7 +160,10 @@ public class PetFollowListviewAdapter extends BaseAdapter implements Filterable 
     }
 
     public ArrayList<String> getFollowing(){
-        ArrayList<String> follows = new ArrayList<>();
-        return follows;
+        ArrayList<String> following_str = new ArrayList<>();
+        for (Pet pet: follow_list){
+            following_str.add(pet.id);
+        }
+        return following_str;
     }
 }

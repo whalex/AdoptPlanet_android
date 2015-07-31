@@ -1,5 +1,6 @@
 package adoptplanet.com.adoptplanet.model;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.parse.ParseUser;
@@ -13,6 +14,9 @@ import adoptplanet.com.adoptplanet.R;
  */
 public class CacheHolder {
 
+    public static ArrayList<Activity> registration_pool = new ArrayList<>();
+
+
     public static ArrayList<String> breeds_cat = new ArrayList<>();
     public static ArrayList<String> breeds_dog = new ArrayList<>();
     public static ArrayList<String> breeds_fish = new ArrayList<>();
@@ -22,7 +26,6 @@ public class CacheHolder {
     public static ArrayList<String> breeds_rabbit = new ArrayList<>();
     public static ArrayList<String> breeds_bird = new ArrayList<>();
     public static ArrayList<String> breeds_hamster = new ArrayList<>();
-
 
 
     public static ArrayList<Pet> pets = new ArrayList<>();
@@ -94,6 +97,11 @@ public class CacheHolder {
 
     public static String getNameByType(Context context, int type){
         return context.getResources().getStringArray(R.array.pet_types)[type];
+    }
+
+    public static void finishRegistration(){
+        for (Activity ac : registration_pool)
+            ac.finish();
     }
 
 }

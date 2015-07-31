@@ -28,6 +28,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 import adoptplanet.com.adoptplanet.R;
+import adoptplanet.com.adoptplanet.model.CacheHolder;
 import adoptplanet.com.adoptplanet.model.CurrentUser;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,6 +49,8 @@ public class SignUpActivity extends Activity {
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
 
+        CacheHolder.registration_pool.add(this);
+
         to_register = new ParseUser();
 
     }
@@ -65,8 +68,6 @@ public class SignUpActivity extends Activity {
             to_register.put("username", email);
             to_register.put("email", email);
             to_register.setPassword(password);
-
-
 
 
             LayoutInflater inflater = getLayoutInflater();
@@ -162,6 +163,8 @@ public class SignUpActivity extends Activity {
                 else{
                     Log.d("SignUpActivity", "CODE: " + e.getCode());
                     e.printStackTrace();
+                    if (e.getCode() == 202)
+                        Toast.makeText(context, "This email is already taken", Toast.LENGTH_LONG).show();
                 }
             }
         });

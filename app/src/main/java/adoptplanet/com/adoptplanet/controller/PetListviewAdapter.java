@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import adoptplanet.com.adoptplanet.R;
+import adoptplanet.com.adoptplanet.model.CacheHolder;
 import adoptplanet.com.adoptplanet.model.Pet;
 import adoptplanet.com.adoptplanet.utils.CircleTransform;
 
@@ -78,14 +79,15 @@ public class PetListviewAdapter extends BaseAdapter implements Filterable {
 
         handler.name.setText(pet.name);
 
-        handler.age_breed.setText("Age: " + pet.age + " Breed: " + pet.breed);
 
-        if (pet.photo_url != null)
+        handler.age_breed.setText("Age: " + pet.age + " Breed: " + CacheHolder.getListByType(pet.type).get(pet.breed));
+
+        if (pet.photo_url != null && pet.photo_url.length() != 0) {
             Picasso.with(context)
                     .load(pet.photo_url)
                     .transform(new CircleTransform())
                     .into(handler.photo);
-
+        }
 
         return convertView;
     }

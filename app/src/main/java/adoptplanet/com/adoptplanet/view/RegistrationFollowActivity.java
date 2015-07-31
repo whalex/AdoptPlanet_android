@@ -30,13 +30,16 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import adoptplanet.com.adoptplanet.R;
 
+import adoptplanet.com.adoptplanet.controller.PetFollowListviewAdapter;
 import adoptplanet.com.adoptplanet.controller.PetListviewAdapter;
+import adoptplanet.com.adoptplanet.model.CacheHolder;
 import adoptplanet.com.adoptplanet.model.CurrentUser;
 import adoptplanet.com.adoptplanet.model.Pet;
 import adoptplanet.com.adoptplanet.utils.DataParser;
@@ -88,7 +91,7 @@ public class RegistrationFollowActivity extends AppCompatActivity {
 
     private ArrayList<Pet> pet_list = new ArrayList<>();
 
-    private PetListviewAdapter adapter;
+    private PetFollowListviewAdapter adapter;
 
     private int index = 0;
 
@@ -100,25 +103,7 @@ public class RegistrationFollowActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration_follow);
         ButterKnife.bind(this);
 
-        Log.d("RegFollowActivity", "Getting id by email: " + CurrentUser.email);
-        ParseQuery<ParseUser> user_q = ParseQuery.getQuery("User");
-        user_q.whereEqualTo("email", CurrentUser.email);
-        user_q.findInBackground(new FindCallback<ParseUser>() {
-            @Override
-            public void done(List<ParseUser> mList, ParseException e) {
-                if (e == null) {
-                    try {
-                        CurrentUser.id = mList.get(0).getString("id");
-                    } catch (Exception e2) {
-                        e2.printStackTrace();
-                    }
-                } else {
-                    Log.d("RegFollowActivity", "CODE: " + e.getCode());
-                    e.printStackTrace();
-                }
-            }
-        });
-
+        CacheHolder.registration_pool.add(this);
 
         setSupportActionBar(toolbar);
         ActionBar bar = getSupportActionBar();
@@ -127,7 +112,8 @@ public class RegistrationFollowActivity extends AppCompatActivity {
         bar.setDisplayHomeAsUpEnabled(true);
         bar.setHomeAsUpIndicator(R.drawable.z_icon_back);
 
-        adapter = new PetListviewAdapter(this, pet_list);
+
+        adapter = new PetFollowListviewAdapter(this, pet_list);
         listview.setAdapter(adapter);
 
         refreshData(index);
@@ -139,7 +125,7 @@ public class RegistrationFollowActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_registration_follow, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search_search_field).getActionView();
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_reg_follow_search_field).getActionView();
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -342,21 +328,22 @@ public class RegistrationFollowActivity extends AppCompatActivity {
         pets_parse.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> mList, ParseException e) {
-                for (ParseObject pet_parse : mList) {
-                    Pet temp = new Pet();
-                    temp.name = pet_parse.getString("name");
-                    temp.id = pet_parse.getString("id");
-                    temp.age = pet_parse.getInt("age");
-                    temp.size = pet_parse.getInt("size");
-                    temp.breed = pet_parse.getInt("breed");
-                    temp.description = pet_parse.getString("description");
-                    temp.photo_url = pet_parse.getString("photo");
-                    //publishProgress(temp);
-                    pet_list.add(temp);
-                    adapter.notifyDataSetChanged();
-                    //Log.d(TAG, "Up Pet! Name:" + temp.name);
-                    //Log.d(TAG, "Size: " + pet_list.size());
-                }
+                if (e == null && mList != null)
+                    for (ParseObject pet_parse : mList) {
+                        Pet temp = new Pet();
+                        temp.name = pet_parse.getString("name");
+                        temp.id = pet_parse.getObjectId();
+                        temp.age = pet_parse.getInt("age");
+                        temp.size = pet_parse.getInt("size");
+                        temp.breed = pet_parse.getInt("breed");
+                        temp.owner_id = pet_parse.getParseUser("owner").getObjectId();
+                        temp.description = pet_parse.getString("description");
+                        temp.photo_url = pet_parse.getString("photo");
+                        if (temp.name != null &&  temp.owner_id != null) {
+                            pet_list.add(temp);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
             }
         });
     }
@@ -390,25 +377,24 @@ public class RegistrationFollowActivity extends AppCompatActivity {
 
     public void handleNextActivity(View v){
         // todo get following
-        final ArrayList<String> follow_ids = null;//adapter.getFollowing();
+        ArrayList<String> follow_ids = adapter.getFollowing();
         ParseUser current;
 
         if (follow_ids.size() != 0) {
-            new ParseQuery<ParseUser>("User").getInBackground(CurrentUser.id, new GetCallback<ParseUser>() {
+            current = ParseObject.createWithoutData(ParseUser.class, CurrentUser.id);
+            for (String curr : follow_ids) {
+                Log.d(TAG, "CURR: " + curr);
+                current.add("pet_follow", ParseObject.createWithoutData("Pet", curr));
+            }
+
+            current.saveInBackground(new SaveCallback() {
                 @Override
-                public void done(ParseUser user, ParseException e) {
-                    if (e == null) {
-                        for (String curr : follow_ids)
-                            user.add("follow", curr);
-                        try{
-                            user.save();
-                            launchActivity();
-                        }
-                        catch(Exception e2){
-                            e2.printStackTrace();
-                        }
-                    } else {
-                        Log.d(TAG, "ERROR: \nCODE: " + e.getCode());
+                public void done(ParseException e) {
+                    if (e == null){
+                        launchActivity();
+                    }
+                    else{
+                        Log.d(TAG, "CODE: " + e.getCode());
                         e.printStackTrace();
                     }
                 }
