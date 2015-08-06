@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -30,10 +31,13 @@ import com.parse.SignUpCallback;
 import adoptplanet.com.adoptplanet.R;
 import adoptplanet.com.adoptplanet.model.CacheHolder;
 import adoptplanet.com.adoptplanet.model.CurrentUser;
+import adoptplanet.com.adoptplanet.utils.CodeHandler;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class SignUpActivity extends Activity {
+
+    public static final String TAG = "SignUpActivity";
 
     @Bind(R.id.sign_up_email) EditText email_edit;
     @Bind(R.id.sign_up_password) EditText password_edit;
@@ -64,9 +68,10 @@ public class SignUpActivity extends Activity {
         if (username != null && password != null && email != null){
             // todo normal input check
 
+
             to_register.put("username_", username);
-            to_register.put("username", email);
-            to_register.put("email", email);
+            to_register.setUsername(email);
+            to_register.setEmail(email);
             to_register.setPassword(password);
 
 
@@ -92,7 +97,19 @@ public class SignUpActivity extends Activity {
                         to_register.put("type", getType());
                         dialog.dismiss();
                         Toast.makeText(context, "Wait for sending data...", Toast.LENGTH_LONG).show();
-                        signUp();
+                        ParseUser.logOutInBackground(new LogOutCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e == null){
+                                    signUp();
+                                }
+                                else{
+                                    Log.d(TAG, "CODE: " + e.getCode());
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+
                     }
                     else if(id == R.id.choose_type_pet){
                         if (getType() == 2){
@@ -153,9 +170,9 @@ public class SignUpActivity extends Activity {
             public void done(ParseException e) {
                 if (e == null){
                     Toast.makeText(context, "Registration succesful", Toast.LENGTH_LONG).show();
-                    CurrentUser.email = to_register.getString("email");
+                    CurrentUser.email = to_register.getEmail();
                     CurrentUser.id = to_register.getObjectId();
-                    Log.d("SignUpActivity", "Email: " + CurrentUser.email + " ID: " + CurrentUser.id);
+                    Log.d(TAG, "Email: " + CurrentUser.email + " ID: " + CurrentUser.id);
 
                     Intent intent = new Intent(context, RegistrationFollowActivity.class);
                     startActivity(intent);
@@ -163,8 +180,12 @@ public class SignUpActivity extends Activity {
                 else{
                     Log.d("SignUpActivity", "CODE: " + e.getCode());
                     e.printStackTrace();
-                    if (e.getCode() == 202)
-                        Toast.makeText(context, "This email is already taken", Toast.LENGTH_LONG).show();
+                    String mess = CodeHandler.getByCode(e.getCode());
+                    if (mess != null)
+                        Toast.makeText(context, mess, Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(context, "Error code: " + e.getCode(), Toast.LENGTH_LONG).show();
+
                 }
             }
         });

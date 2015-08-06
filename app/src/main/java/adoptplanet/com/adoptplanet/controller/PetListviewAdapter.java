@@ -77,17 +77,18 @@ public class PetListviewAdapter extends BaseAdapter implements Filterable {
             handler = (Handler) convertView.getTag();
         }
 
-        handler.name.setText(pet.name);
 
+        handler.age_breed.setText("Age: " + pet.age + " " + pet.getBreedStr());
 
-        handler.age_breed.setText("Age: " + pet.age + " Breed: " + CacheHolder.getListByType(pet.type).get(pet.breed));
+        try {
 
-        if (pet.photo_url != null && pet.photo_url.length() != 0) {
-            Picasso.with(context)
-                    .load(pet.photo_url)
-                    .transform(new CircleTransform())
-                    .into(handler.photo);
-        }
+            if (pet.photo_url != null) {
+                Picasso.with(context)
+                        .load(pet.photo_url)
+                        .transform(new CircleTransform())
+                        .into(handler.photo);
+            }
+        }catch(Exception e){e.printStackTrace();}
 
         return convertView;
     }

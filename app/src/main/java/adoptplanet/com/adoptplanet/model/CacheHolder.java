@@ -27,6 +27,19 @@ public class CacheHolder {
     public static ArrayList<String> breeds_bird = new ArrayList<>();
     public static ArrayList<String> breeds_hamster = new ArrayList<>();
 
+    public static Integer size_pr_cat;
+    public static Integer size_pr_dog;
+    public static Integer size_pr_fish;
+    public static Integer size_pr_horse;
+    public static Integer size_pr_ferret;
+    public static Integer size_pr_others;
+    public static Integer size_pr_rabbit;
+    public static Integer size_pr_bird;
+    public static Integer size_pr_hamster;
+
+
+
+
 
     public static ArrayList<Pet> pets = new ArrayList<>();
 
@@ -94,6 +107,32 @@ public class CacheHolder {
         }
         return breeds_to_choose;
     }
+
+    public static int getPrimalSizeByType(int type){
+        switch(type){
+            case Pet.TYPE_CAT:
+                return size_pr_cat;
+            case Pet.TYPE_DOG:
+                return size_pr_dog;
+            case Pet.TYPE_HORSE:
+                return size_pr_horse;
+            case Pet.TYPE_RABBIT:
+                return size_pr_rabbit;
+            case Pet.TYPE_HAMSTER:
+                return size_pr_hamster;
+            case Pet.TYPE_FISH:
+                return size_pr_fish;
+            case Pet.TYPE_BIRD:
+                return size_pr_bird;
+            case Pet.TYPE_FERRET:
+                return size_pr_ferret;
+            case Pet.TYPE_OTHERS:
+                return size_pr_others;
+            default:
+                return -1;
+        }
+    }
+
 
     public static String getNameByType(Context context, int type){
         return context.getResources().getStringArray(R.array.pet_types)[type];

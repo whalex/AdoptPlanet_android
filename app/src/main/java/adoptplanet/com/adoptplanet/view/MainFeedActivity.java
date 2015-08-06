@@ -13,12 +13,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
 
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -47,6 +51,8 @@ public class MainFeedActivity extends AppCompatActivity {
 
     @Bind(R.id.main_feed_toolbar) Toolbar toolbar;
 
+    @Bind(R.id.main_feed_fab) FloatingActionMenu fab;
+
     PetGridviewAdapter pet_adapter;
     EventListAdapter event_adapter;
 
@@ -60,6 +66,7 @@ public class MainFeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
         ButterKnife.bind(this);
+
 
         th.setup();
         TabHost.TabSpec ts = th.newTabSpec("Pets");
@@ -175,6 +182,58 @@ public class MainFeedActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void handleFab(View view) {
+        int id = view.getId();
+
+        switch (id){
+            case R.id.main_feed_fab_add:
+                handleAdd();
+                break;
+            case R.id.main_feed_fab_favorite:
+                handleFavorite();
+                break;
+            case R.id.main_feed_fab_login:
+                handleLogin();
+                break;
+            case R.id.main_feed_fab_message:
+                handleMessage();
+                break;
+            case R.id.main_feed_fab_news:
+                handleNews();
+                break;
+            case R.id.main_feed_fab_search:
+                handleSearch();
+                break;
+        }
+
+        fab.close(true);
+    }
+
+    public void handleAdd(){
+        // todo add
+    }
+
+    public void handleFavorite(){
+        // todo favorite
+    }
+
+    public void handleLogin(){
+        Intent intent = new Intent(this, StartingScreenActivity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public void handleMessage(){
+        // todo message
+    }
+
+    public void handleNews(){
+        // todo news
+    }
+
+    public void handleSearch(){
+        // todo search
+    }
 
     class FeedPetLoader extends AsyncTask<Void, Pet, Void> {
 

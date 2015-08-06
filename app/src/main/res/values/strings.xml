@@ -60,6 +60,8 @@
     <string name="action_example">Example action</string>
     <string name="title_activity_user_profile_edit">UserProfileEditActivity</string>
     <string name="title_activity_other_profile">OtherProfileActivity</string>
+    <string name="title_activity_launch">LaunchActivity</string>
+    <string name="title_activity_invite">InviteActivity</string>
 
 
 </resources>

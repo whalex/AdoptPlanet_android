@@ -151,4 +151,8 @@ public class BreedListviewAdapter extends BaseAdapter implements Filterable{
         return choosen_int;
     }
 
+    public void addCustom(String custom){
+        original_list.add(custom);
+        notifyDataSetChanged();
+    }
 }

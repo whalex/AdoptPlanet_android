@@ -335,19 +335,13 @@ public class SearchPetActivity extends ActionBarActivity {
             @Override
             public void done(List<ParseObject> mList, ParseException e) {
                 for (ParseObject pet_parse : mList) {
-                    Pet temp = new Pet();
-                    temp.name = pet_parse.getString("name");
-                    temp.id = pet_parse.getString("id");
-                    temp.age = pet_parse.getInt("age");
-                    temp.size = pet_parse.getInt("size");
-                    temp.breed = pet_parse.getInt("breed");
-                    temp.description = pet_parse.getString("description");
-                    temp.photo_url = pet_parse.getString("photo");
-                    //publishProgress(temp);
-                    pet_list.add(temp);
-                    adapter.notifyDataSetChanged();
-                    //Log.d(TAG, "Up Pet! Name:" + temp.name);
-                    //Log.d(TAG, "Size: " + pet_list.size());
+                    Pet pet = new Pet(pet_parse);
+
+                    if (pet.owner_id != null && pet.owner_id.length() != 0
+                            && pet.name != null && pet.name.length() != 0){
+                        pet_list.add(pet);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
             }
         });

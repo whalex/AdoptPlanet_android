@@ -330,16 +330,9 @@ public class RegistrationFollowActivity extends AppCompatActivity {
             public void done(List<ParseObject> mList, ParseException e) {
                 if (e == null && mList != null)
                     for (ParseObject pet_parse : mList) {
-                        Pet temp = new Pet();
-                        temp.name = pet_parse.getString("name");
-                        temp.id = pet_parse.getObjectId();
-                        temp.age = pet_parse.getInt("age");
-                        temp.size = pet_parse.getInt("size");
-                        temp.breed = pet_parse.getInt("breed");
-                        temp.owner_id = pet_parse.getParseUser("owner").getObjectId();
-                        temp.description = pet_parse.getString("description");
-                        temp.photo_url = pet_parse.getString("photo");
-                        if (temp.name != null &&  temp.owner_id != null) {
+                        Pet temp = new Pet(pet_parse);
+
+                        if (temp != null && temp.name != null &&  temp.owner_id != null) {
                             pet_list.add(temp);
                             adapter.notifyDataSetChanged();
                         }

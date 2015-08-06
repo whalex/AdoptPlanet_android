@@ -21,23 +21,6 @@ public class DataParser {
 
     public static final String TAG = "DataParser";
 
-
-    public static Pet parsePet(ParseObject parse){
-        Pet pet = new Pet();
-
-        pet.name = parse.getString("name");
-        pet.gender = parse.getInt("gender");
-        pet.breed = parse.getInt("breed");
-        pet.age = parse.getInt("age");
-        pet.photo_url = parse.getString("photo");
-        pet.description = parse.getString("description");
-        pet.size = parse.getInt("size");
-        pet.id = parse.getString("id");
-
-        return pet;
-    }
-
-
     public static void uploadBreeds(Context context, int id){
         ArrayList<String> support_langs = new ArrayList<>();
         support_langs.add("en");
@@ -45,6 +28,7 @@ public class DataParser {
 
         String language = Locale.getDefault().getDisplayLanguage();
         ArrayList<String> where;
+        Integer size_int;
         String file_name;
         if (support_langs.contains(language))
             file_name = "breeds/" + language + "_breeds_";
@@ -56,38 +40,47 @@ public class DataParser {
             case Pet.TYPE_CAT:
                 file_name += "cat";
                 where = CacheHolder.breeds_cat;
+                size_int = CacheHolder.size_pr_cat;
                 break;
             case Pet.TYPE_DOG:
                 file_name += "dog";
                 where = CacheHolder.breeds_dog;
+                size_int = CacheHolder.size_pr_dog;
                 break;
             case Pet.TYPE_HORSE:
                 file_name += "horse";
                 where = CacheHolder.breeds_horse;
+                size_int = CacheHolder.size_pr_horse;
                 break;
             case Pet.TYPE_BIRD:
                 file_name += "bird";
                 where = CacheHolder.breeds_bird;
+                size_int = CacheHolder.size_pr_bird;
                 break;
             case Pet.TYPE_FERRET:
                 file_name += "ferret";
                 where = CacheHolder.breeds_ferret;
+                size_int = CacheHolder.size_pr_ferret;
                 break;
             case Pet.TYPE_FISH:
                 file_name += "fish";
                 where = CacheHolder.breeds_fish;
+                size_int = CacheHolder.size_pr_fish;
                 break;
             case Pet.TYPE_HAMSTER:
                 file_name += "hamster";
                 where = CacheHolder.breeds_hamster;
+                size_int = CacheHolder.size_pr_hamster;
                 break;
             case Pet.TYPE_OTHERS:
                 file_name += "others";
                 where = CacheHolder.breeds_others;
+                size_int = CacheHolder.size_pr_others;
                 break;
             case Pet.TYPE_RABBIT:
                 file_name += "rabbit";
                 where = CacheHolder.breeds_rabbit;
+                size_int = CacheHolder.size_pr_rabbit;
                 break;
             default:
                 where = new ArrayList<>();
@@ -108,6 +101,7 @@ public class DataParser {
                 where.add(readed);
                 counter++;
             }
+            size_int = where.size();
         }
         catch(IOException e){Log.e(TAG, "File not found. Name: " + file_name);}
         catch(Exception e){e.printStackTrace();}

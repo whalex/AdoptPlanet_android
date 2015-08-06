@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import adoptplanet.com.adoptplanet.R;
+import adoptplanet.com.adoptplanet.model.CacheHolder;
 import adoptplanet.com.adoptplanet.model.Pet;
 import adoptplanet.com.adoptplanet.utils.CircleTransform;
 
@@ -79,9 +80,10 @@ public class PetFollowListviewAdapter extends BaseAdapter implements Filterable 
 
         handler.name.setText(pet.name);
 
-        handler.age_breed.setText("Age: " + pet.age + " Breed: " + pet.breed);
+        handler.age_breed.setText("Age: " + pet.age + " " + pet.getBreedStr());
 
-        Log.d(TAG, "PET ID: " + pet.id);
+
+        //Log.d(TAG, "PET ID: " + pet.id);
 
         if (follow_list.contains(pet)){
             handler.check_image.setImageDrawable(context.getResources().getDrawable(R.drawable.z_check_box_checked));
@@ -91,10 +93,15 @@ public class PetFollowListviewAdapter extends BaseAdapter implements Filterable 
         }
 
 
-        if (pet.photo_url != null && pet.photo_url.length() != 0) {
+        if (pet.photo_url != null) {
             Picasso.with(context)
                     .load(pet.photo_url)
                     .transform(new CircleTransform())
+                    .into(handler.photo);
+        }
+        else{
+            Picasso.with(context)
+                    .load(R.drawable.z_check_box_passive)
                     .into(handler.photo);
         }
 

@@ -38,6 +38,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="90dp"
+        android:id="@+id/skip_lay"
         android:gravity="center_vertical|center_horizontal"
         android:background="#ffeeeeee">
 
@@ -64,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="Create pet account"
-        android:id="@+id/button6"
+        android:id="@+id/create_pet_button"
         android:textAllCaps="false"
         android:background="@color/orange"
         android:textSize="18sp"/>

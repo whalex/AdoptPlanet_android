@@ -72,11 +72,13 @@ public class PetGridviewAdapter extends BaseAdapter {
         handler.name.setText(pet.name);
         Log.d("PetListAdapter", "P:" + position + " Name: " + pet.name);
         //handler.icon_text.setText(pet.);
-        if (pet.photo_url != null)
-            Picasso.with(context)
-                    .load(pet.photo_url)
-                    .into(handler.photo);
-
+        try {
+            if (pet.photo_url != null)
+                Picasso.with(context)
+                        .load(pet.photo_url)
+                        .into(handler.photo);
+        }
+        catch(Exception e){}
 
         return convertView;
     }

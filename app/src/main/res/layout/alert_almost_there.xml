@@ -40,7 +40,8 @@
         android:background="@color/orange"
         android:gravity="center_vertical|center_horizontal"
         android:paddingTop="20dp"
-        android:paddingBottom="20dp">
+        android:paddingBottom="20dp"
+        android:id="@+id/layout_continue">
 
         <TextView
             android:layout_width="wrap_content"

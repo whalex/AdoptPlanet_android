@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.parse.Parse;
 import com.parse.ParseUser;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -28,6 +29,7 @@ import adoptplanet.com.adoptplanet.model.Pet;
 import adoptplanet.com.adoptplanet.utils.DataParser;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 
 
 public class StartingScreenActivity extends Activity {
@@ -54,10 +56,7 @@ public class StartingScreenActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting_screen);
         ButterKnife.bind(this);
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "9maWSgFEvVDhE2S38JjLHWjkrriEXlSf0MGT5BrO", "aZhLgSlogo10qICrHMat9xTaQJiMJpieg1sSikOt");
-        ParseUser.enableRevocableSessionInBackground();
+        //Parse.enableLocalDatastore(this);
 
         TextPagerAdapter adapter = new TextPagerAdapter();
         pager.setAdapter(adapter);
@@ -77,11 +76,6 @@ public class StartingScreenActivity extends Activity {
 
     public void handle_signup(View view){
         Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
-    public void handle_try(View view) {
-        Intent intent = new Intent(this, MainFeedActivity.class);
         startActivity(intent);
     }
 

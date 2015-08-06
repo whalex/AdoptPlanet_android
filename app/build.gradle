@@ -1,4 +1,15 @@
 apply plugin: 'com.android.application'
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+apply plugin: 'io.fabric'
+
 
 android {
 
@@ -24,6 +35,12 @@ android {
     }
 }
 
+
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
@@ -32,4 +49,8 @@ dependencies {
     compile 'com.parse.bolts:bolts-android:1.+'
     compile project (':slides')
     compile 'com.github.clans:fab:1.5.4'
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.0@aar') {
+        transitive = true;
+    }
+
 }

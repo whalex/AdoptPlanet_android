@@ -2,17 +2,12 @@ package adoptplanet.com.adoptplanet.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,14 +28,19 @@ import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.squareup.picasso.Picasso;
 
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import adoptplanet.com.adoptplanet.R;
 import adoptplanet.com.adoptplanet.controller.AlertBuilder;
@@ -65,7 +66,7 @@ public class AddPetActivity extends AppCompatActivity {
     @Bind(R.id.add_pet_age_et) EditText age_et;//
     // BREED
     @Bind(R.id.add_pet_breed_l) LinearLayout breed_l;//
-    @Bind(R.id.add_pet_breed_tv) TextView breed_tv;//
+    @Bind(R.id.add_pet_breed_actv) AutoCompleteTextView breed_actv;
     // TYPE
     @Bind(R.id.add_pet_type_l) LinearLayout type_l;//
     @Bind(R.id.add_pet_type_tv) TextView type_tv;//
@@ -82,6 +83,7 @@ public class AddPetActivity extends AppCompatActivity {
 
     private Pet pet = null;
     private Pet temp_pet = new Pet();
+    private File photo_file;
 
     private int current_action = ADD_PET;
 
@@ -89,6 +91,8 @@ public class AddPetActivity extends AppCompatActivity {
     private Activity this_activity;
 
     AlertDialog dialog_type = null;
+    ArrayAdapter<String> completeAdapter;
+    ArrayList<String> completeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +107,8 @@ public class AddPetActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         ActionBar action_bar = getSupportActionBar();
+
+
 
         Intent this_intent = getIntent();
         pet = (Pet) this_intent.getSerializableExtra("pet");
@@ -129,6 +135,13 @@ public class AddPetActivity extends AppCompatActivity {
             pet.gender = Pet.GENDER_MALE;
 
         }
+
+        completeList = CacheHolder.getListByType(temp_pet.type);
+        completeAdapter = new ArrayAdapter<>(this,
+                        android.R.layout.simple_dropdown_item_1line, completeList);
+
+        breed_actv.setAdapter(completeAdapter);
+
     }
 
     @Override
@@ -179,26 +192,41 @@ public class AddPetActivity extends AppCompatActivity {
         }
         else{
             if (current_action == EDIT_PET){
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("GameScore");
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Pet");
 
                 query.getInBackground(pet.id, new GetCallback<ParseObject>() {
                     public void done(ParseObject pet_updt, ParseException e) {
                         if (e == null) {
                             pet_updt.put("name", temp_pet.name);
                             pet_updt.put("age", temp_pet.age);
-                            pet_updt.put("breed", temp_pet.breed);
                             pet_updt.put("type", temp_pet.type);
+//                            if (temp_pet.breed >= CacheHolder.getPrimalSizeByType(temp_pet.type)) {
+//                                temp_pet.breed = -1;
+//                                pet_updt.put("breed", temp_pet.breed);
+//                                pet_updt.put("custom_breed", temp_pet.breed_str);
+//                            }
+//                            else
+//                                pet_updt.put("breed", temp_pet.breed);
+
+                            temp_pet.breed = getPos(breed_actv.getText().toString());
+
+                            pet_updt.put("breed", temp_pet.breed);
+                            if (temp_pet.breed == -1)
+                                pet_updt.put("custom_breed", breed_actv.getText().toString());
+
                             pet_updt.put("gender", temp_pet.gender);
                             pet_updt.put("size", temp_pet.size);
+
+
+                            pet_updt.put("photo_f", new ParseFile(getByteFromFile(photo_file)));
                             pet_updt.put("owner", ParseObject.createWithoutData(ParseUser.class, CurrentUser.id));
                             pet_updt.saveInBackground(new SaveCallback() {
                                 @Override
                                 public void done(ParseException e) {
-                                    if (e == null){
+                                    if (e == null) {
                                         Toast.makeText(context, "Success!", Toast.LENGTH_LONG).show();
                                         this_activity.finish();
-                                    }
-                                    else{
+                                    } else {
                                         e.printStackTrace();
                                     }
                                 }
@@ -211,20 +239,27 @@ public class AddPetActivity extends AppCompatActivity {
                 ParseObject pet_p = new ParseObject("Pet");
                 pet_p.put("name", temp_pet.name);
                 pet_p.put("age", temp_pet.age);
+
+                temp_pet.breed = getPos(breed_actv.getText().toString());
+
                 pet_p.put("breed", temp_pet.breed);
+                if (temp_pet.breed == -1)
+                    pet_p.put("custom_breed", breed_actv.getText().toString());
+
                 pet_p.put("type", temp_pet.type);
                 pet_p.put("gender", temp_pet.gender);
                 pet_p.put("size", temp_pet.size);
                 pet_p.put("owner", ParseObject.createWithoutData(ParseUser.class, CurrentUser.id));
 
-                if (temp_pet.photo_local != null)
-                    pet_p.put("photo_f", new File(temp_pet.photo_local));
+                if (photo_file != null)
+                    pet_p.put("photo_f", new ParseFile(getByteFromFile(photo_file)));
 
+//                ParseFile photo_file = new ParseFile(temp_pet.photo)
                 pet_p.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
                         if (e == null){
-                            Toast.makeText(context, "Success!", Toast.LENGTH_LONG).show();
+
                             LinearLayout layout = (LinearLayout)
                                     getLayoutInflater().inflate(R.layout.alert_finish_registration, null);
 
@@ -282,7 +317,7 @@ public class AddPetActivity extends AppCompatActivity {
 
 
             File image_file = new File(filePath);
-            temp_pet.photo = image_file;
+            photo_file = image_file;
             Log.d(TAG, "Path: " + filePath);
             Picasso.with(this)
                     .load(image_file)
@@ -363,7 +398,9 @@ public class AddPetActivity extends AppCompatActivity {
                     }
 
                     temp_pet.breed = -1;
-                    breed_tv.setText(context.getResources().getString(R.string.choose_breed));
+                    breed_actv.setText("");
+                    completeList = CacheHolder.getListByType(temp_pet.type);
+                    completeAdapter.notifyDataSetChanged();
                 }
                 dialog_type.dismiss();
             }
@@ -385,14 +422,6 @@ public class AddPetActivity extends AppCompatActivity {
         dialog_type.show();
     }
 
-    public void handleBreed(View view) {
-        if (temp_pet.type != -1){
-            new AlertBuilder().showBread(this, temp_pet.type, breed_tv, temp_pet);
-        }
-        else{
-            Toast.makeText(this, R.string.toast_chose_type_first, Toast.LENGTH_LONG).show();
-        }
-    }
 
     public String getPath(Uri uri) {
         if( uri == null ) {
@@ -407,5 +436,29 @@ public class AddPetActivity extends AppCompatActivity {
             return cursor.getString(column_index);
         }
         return uri.getPath();
+    }
+
+    private byte[] getByteFromFile(File file){
+        byte[] photo_bytes = new byte[(int)file.length()];
+        try {
+            BufferedInputStream buf = new BufferedInputStream(new FileInputStream(file));
+            buf.read(photo_bytes, 0, photo_bytes.length);
+            buf.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return photo_bytes;
+    }
+
+    private int getPos(String el){
+        el = el.toLowerCase();
+        ArrayList<String> list = CacheHolder.getListByType(temp_pet.type);
+        for (int i = 0; i < list.size(); i++){
+            if (list.get(i).toLowerCase().equals(el))
+                return i;
+        }
+        return -1;
     }
 }
