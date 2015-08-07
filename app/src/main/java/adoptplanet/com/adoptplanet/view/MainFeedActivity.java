@@ -2,6 +2,7 @@ package adoptplanet.com.adoptplanet.view;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 
 import com.github.clans.fab.FloatingActionButton;
@@ -112,15 +114,7 @@ public class MainFeedActivity extends AppCompatActivity {
             @Override
             public void done(List<ParseObject> mList, ParseException e) {
                 for (ParseObject pet_parse : mList) {
-                    Pet temp = new Pet();
-                    temp.name = pet_parse.getString("name");
-                    temp.id = pet_parse.getString("id");
-                    temp.age = pet_parse.getInt("age");
-                    temp.size = pet_parse.getInt("size");
-                    temp.breed = pet_parse.getInt("breed");
-                    temp.description = pet_parse.getString("description");
-                    temp.photo_url = pet_parse.getString("photo");
-                    //publishProgress(temp);
+                    Pet temp = new Pet(pet_parse);
                     pet_list.add(temp);
                     pet_adapter.notifyDataSetChanged();
                     //Log.d(TAG, "Up Pet! Name:" + temp.name);
@@ -151,6 +145,12 @@ public class MainFeedActivity extends AppCompatActivity {
                 }
             }
         });
+
+        for(int i=0;i<th.getTabWidget().getChildCount();i++)
+        {
+            TextView tv = (TextView) th.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            tv.setTextColor(getResources().getColor(R.color.white));
+        }
     }
 
     @Override

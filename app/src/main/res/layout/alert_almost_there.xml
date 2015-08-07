@@ -26,11 +26,12 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="170dp"
         android:id="@+id/imageView17"
         android:layout_gravity="center_horizontal"
         android:background="@color/gray"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="15dp"
+        android:src="@drawable/z_almost"/>
 
     <LinearLayout
         android:orientation="vertical"

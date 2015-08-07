@@ -97,6 +97,8 @@ public class DataParser {
             Log.d(TAG, "Load data from file: " + file_name);
 
             while((readed = reader.readLine()) != null){
+                if (readed.length() == 0)
+                    break;
                 Log.d(TAG, counter + ": " + readed);
                 where.add(readed);
                 counter++;

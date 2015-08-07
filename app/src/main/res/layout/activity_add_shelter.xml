@@ -3,94 +3,83 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                tools:context="adoptplanet.com.adoptplanet.view.UserProfileEditActivity">
+                tools:context="adoptplanet.com.adoptplanet.view.AddShelterActivity">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/blue"
-        android:id="@+id/add_pet_toolbar"/>
+        android:id="@+id/add_shelter_toolbar"/>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/imageView25"
+            android:id="@+id/add_shelter_photo"
             android:layout_gravity="center_horizontal"
             android:onClick="handlePhoto"
             android:src="@drawable/z_add_photo"
-            android:layout_marginTop="10dp"/>
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/editText"
+            android:id="@+id/add_shelter_name"
             android:background="@color/white"
             android:shadowColor="@color/black"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:hint="Enter user name"
-            android:textColorHint="@color/gray"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/editText2"
-            android:background="@color/white"
-            android:shadowColor="@color/black"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:hint="Enter contact email"
+            android:hint="Enter shelter name"
             android:textColorHint="@color/gray"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/add_shelter_photo"
+            android:layout_marginTop="20dp"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/editText3"
+            android:id="@+id/add_shelter_number"
             android:background="@color/white"
             android:shadowColor="@color/black"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:hint="Enter contact phone number"
             android:textColorHint="@color/gray"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/add_shelter_email"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"/>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:background="@color/white"
             android:onClick="handleType"
             android:gravity="center_vertical"
-            android:id="@+id/linearLayout3">
+            android:id="@+id/add_shelter_address_lay"
+            android:layout_below="@+id/add_shelter_number"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Adress"
-                android:id="@+id/textView39"
+                android:id="@+id/textView50"
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
                 android:textSize="22sp"/>
@@ -100,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="pick adress"
-                android:id="@+id/textView40"
+                android:id="@+id/add_shelter_address_tv"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="2"
@@ -111,7 +100,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView26"
+                android:id="@+id/imageView31"
                 android:src="@drawable/z_arrow_right"
                 android:layout_marginRight="5dp"/>
         </LinearLayout>
@@ -119,14 +108,31 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Save"
-            android:id="@+id/button3"
+            android:text="Submit"
+            android:id="@+id/add_shelter_submit"
             android:background="@color/orange"
             android:onClick="handleSubmit"
             android:textAllCaps="false"
             android:textSize="25sp"
-            android:layout_marginTop="10dp"
             android:layout_weight="0"
-            android:textColor="@color/white"/>
-    </LinearLayout>
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/add_shelter_email"
+            android:background="@color/white"
+            android:shadowColor="@color/black"
+            android:hint="Enter contact e-mail"
+            android:textColorHint="@color/gray"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/add_shelter_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
 </LinearLayout>

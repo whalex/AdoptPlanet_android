@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import adoptplanet.com.adoptplanet.R;
 import adoptplanet.com.adoptplanet.model.Pet;
+import adoptplanet.com.adoptplanet.utils.CircleTransform;
 
 /**
  * Created by Alexeich on 13.07.2015.
@@ -72,13 +73,17 @@ public class PetGridviewAdapter extends BaseAdapter {
         handler.name.setText(pet.name);
         Log.d("PetListAdapter", "P:" + position + " Name: " + pet.name);
         //handler.icon_text.setText(pet.);
-        try {
-            if (pet.photo_url != null)
-                Picasso.with(context)
-                        .load(pet.photo_url)
-                        .into(handler.photo);
-        }
-        catch(Exception e){}
+
+        if (pet.photo_url != null)
+            Picasso.with(context)
+                    .load(pet.photo_url)
+                    .transform(new CircleTransform())
+                    .into(handler.photo);
+        else
+            Picasso.with(context)
+                    .load(R.drawable.z_check_box_checked)
+                    .into(handler.photo);
+
 
         return convertView;
     }

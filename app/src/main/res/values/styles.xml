@@ -1,8 +1,6 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorHint">@color/white</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Example</item>
         <item name="android:actionBarStyle">@style/ActionBarStyle</item>
         <!--<item name="colorControlNormal">@color/white</item>-->
@@ -31,5 +29,7 @@
         <item name="logo">@drawable/z_action_bar_logo_fixed</item>
         <!--<item name="textColor">@color/white</item>-->
     </style>
+
+
 
 </resources>

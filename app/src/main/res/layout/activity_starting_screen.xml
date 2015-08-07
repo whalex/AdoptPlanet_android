@@ -13,7 +13,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/imageView18"
-        android:layout_above="@+id/starting_screen_indicator"/>
+        android:layout_above="@+id/starting_screen_indicator"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
 
     <com.viewpagerindicator.CirclePageIndicator
         android:id="@+id/starting_screen_indicator"

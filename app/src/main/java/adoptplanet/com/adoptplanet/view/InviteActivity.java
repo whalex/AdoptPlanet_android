@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import adoptplanet.com.adoptplanet.R;
+import adoptplanet.com.adoptplanet.controller.AlertCreator;
 import adoptplanet.com.adoptplanet.model.CacheHolder;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -78,6 +79,7 @@ public class InviteActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     int id = v.getId();
+
                     if (id == R.id.create_pet_button){
                         handleAddPet();
                     }
@@ -109,6 +111,6 @@ public class InviteActivity extends ActionBarActivity {
     }
 
     private void handleSkip(){
-        CacheHolder.finishRegistration();
+        AlertCreator.showFinishReg(this);
     }
 }

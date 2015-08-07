@@ -79,6 +79,10 @@
             android:name=".view.InviteActivity"
             android:label="@string/title_activity_invite" >
         </activity>
+        <activity
+            android:name=".view.AddShelterActivity"
+            android:label="@string/title_activity_add_shelter" >
+        </activity>
     </application>
 
 </manifest>

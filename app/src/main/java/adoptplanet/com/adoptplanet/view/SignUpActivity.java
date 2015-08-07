@@ -74,65 +74,25 @@ public class SignUpActivity extends Activity {
             to_register.setEmail(email);
             to_register.setPassword(password);
 
-
             LayoutInflater inflater = getLayoutInflater();
-            LinearLayout lay = (LinearLayout) inflater.inflate(R.layout.alert_account_choose, null);
 
-            final ImageView select_pet = (ImageView) lay.findViewById(R.id.choose_type_pet);
-            final ImageView select_lover = (ImageView) lay.findViewById(R.id.choose_type_lover);
-            final TextView text_view = (TextView) lay.findViewById(R.id.choose_type_text);
-            Button accept = (Button) lay.findViewById(R.id.choose_type_accept);
+            LinearLayout lay = (LinearLayout) inflater.inflate(R.layout.alert_term, null);
+
+            final TextView tv = (TextView) lay.findViewById(R.id.text);
+            final Button but = (Button) lay.findViewById(R.id.accept);
 
             final AlertDialog dialog = new AlertDialog.Builder(this)
                     .setView(lay)
                     .setCancelable(true)
                     .create();
 
-            View.OnClickListener on_click_choose = new View.OnClickListener() {
+            but.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int id = v.getId();
-
-                    if (id == R.id.choose_type_accept){
-                        to_register.put("type", getType());
-                        dialog.dismiss();
-                        Toast.makeText(context, "Wait for sending data...", Toast.LENGTH_LONG).show();
-                        ParseUser.logOutInBackground(new LogOutCallback() {
-                            @Override
-                            public void done(ParseException e) {
-                                if (e == null){
-                                    signUp();
-                                }
-                                else{
-                                    Log.d(TAG, "CODE: " + e.getCode());
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-
-                    }
-                    else if(id == R.id.choose_type_pet){
-                        if (getType() == 2){
-                            text_view.setText("Text for pet account...");
-                            setType(1);
-                            makeUnactive(select_lover);
-                            makeActive(select_pet);
-                        }
-                    }
-                    else if(id == R.id.choose_type_lover){
-                        if (getType() == 1){
-                            text_view.setText("Text for lover account...");
-                            setType(2);
-                            makeActive(select_lover);
-                            makeUnactive(select_pet);
-                        }
-                    }
+                    dialog.dismiss();
+                    showChooseAcc();
                 }
-            };
-
-            select_lover.setOnClickListener(on_click_choose);
-            select_pet.setOnClickListener(on_click_choose);
-            accept.setOnClickListener(on_click_choose);
+            });
 
             dialog.show();
         }
@@ -149,15 +109,86 @@ public class SignUpActivity extends Activity {
         return type;
     }
 
-    private void setType(int type){
-        this.type = type;
+    private void showChooseAcc(){
+        LayoutInflater inflater = getLayoutInflater();
+        LinearLayout lay = (LinearLayout) inflater.inflate(R.layout.alert_account_choose, null);
+
+        final ImageView select_user_iv = (ImageView) lay.findViewById(R.id.user_iv);
+        final ImageView select_shelter_iv = (ImageView) lay.findViewById(R.id.shelter_iv);
+        final TextView user_tv = (TextView) lay.findViewById(R.id.user_tv);
+        final TextView shelter_tv = (TextView) lay.findViewById(R.id.shelter_tv);
+        final LinearLayout user_lay = (LinearLayout) lay.findViewById(R.id.user_lay);
+        final LinearLayout shelter_lay = (LinearLayout) lay.findViewById(R.id.shelter_lay);
+
+        final TextView text_view = (TextView) lay.findViewById(R.id.choose_type_text);
+        Button accept = (Button) lay.findViewById(R.id.choose_type_accept);
+
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(lay)
+                .setCancelable(true)
+                .create();
+
+        View.OnClickListener on_click_choose = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = v.getId();
+
+                if (id == R.id.choose_type_accept){
+                    to_register.put("type", getType());
+                    dialog.dismiss();
+                    Toast.makeText(context, "Wait for sending data...", Toast.LENGTH_LONG).show();
+                    ParseUser.logOutInBackground(new LogOutCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e == null){
+                                signUp();
+                            }
+                            else{
+                                Log.d(TAG, "CODE: " + e.getCode());
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                }
+                else if(id == R.id.user_lay){
+                    if (getType() == 2){
+                        text_view.setText("Text for user account...");
+                        setType(1, select_user_iv, user_tv, select_shelter_iv, shelter_tv);
+                    }
+                }
+                else if(id == R.id.shelter_lay){
+                    if (getType() == 1){
+                        text_view.setText("Text for shelter account...");
+                        setType(2, select_user_iv, user_tv, select_shelter_iv, shelter_tv);
+                    }
+                }
+            }
+        };
+
+        user_lay.setOnClickListener(on_click_choose);
+        shelter_lay.setOnClickListener(on_click_choose);
+        accept.setOnClickListener(on_click_choose);
+
+        dialog.show();
     }
 
-    private void makeUnactive(ImageView iv){
-        iv.setBackgroundColor(getResources().getColor(R.color.white));
-    }
-    private void makeActive(ImageView iv){
-        iv.setBackgroundColor(getResources().getColor(R.color.gray));
+    private void setType(int type, ImageView iv1, TextView tv1, ImageView iv2, TextView tv2){
+
+        if (type == 1){
+            iv1.setImageResource(R.drawable.z_user_acc_active);
+            tv1.setTextColor(getResources().getColor(R.color.blue_d));
+            iv2.setImageResource(R.drawable.z_shelter_acc);
+            tv2.setTextColor(getResources().getColor(R.color.gray));
+        }
+        else if (type == 2){
+            iv1.setImageResource(R.drawable.z_user_acc);
+            tv1.setTextColor(getResources().getColor(R.color.gray));
+            iv2.setImageResource(R.drawable.z_shelter_acc_active);
+            tv2.setTextColor(getResources().getColor(R.color.blue_d));
+        }
+
+        this.type = type;
     }
 
     public void handleSocial(View view){

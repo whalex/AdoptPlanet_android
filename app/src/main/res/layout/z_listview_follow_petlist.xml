@@ -44,5 +44,5 @@
         android:id="@+id/z_pet_listview_check_image"
         android:src="@drawable/z_check_box_passive"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"/>
+        android:layout_weight="0"/>
 </LinearLayout>

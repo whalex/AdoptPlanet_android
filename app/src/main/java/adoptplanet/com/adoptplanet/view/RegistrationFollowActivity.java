@@ -332,7 +332,7 @@ public class RegistrationFollowActivity extends AppCompatActivity {
                     for (ParseObject pet_parse : mList) {
                         Pet temp = new Pet(pet_parse);
 
-                        if (temp != null && temp.name != null &&  temp.owner_id != null) {
+                        if (temp != null && temp.name != null && temp.owner_id != null) {
                             pet_list.add(temp);
                             adapter.notifyDataSetChanged();
                         }
@@ -371,6 +371,27 @@ public class RegistrationFollowActivity extends AppCompatActivity {
     public void handleNextActivity(View v){
         // todo get following
         ArrayList<String> follow_ids = adapter.getFollowing();
+        if (follow_ids.size() < 3){
+            LayoutInflater inflater = getLayoutInflater();
+
+            LinearLayout lay = (LinearLayout) inflater.inflate(R.layout.alert_more_follow, null);
+            Button button = (Button) lay.findViewById(R.id.dissmiss_b);
+
+            final AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setView(lay)
+                    .create();
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
+            return;
+        }
+
         ParseUser current;
 
         if (follow_ids.size() != 0) {

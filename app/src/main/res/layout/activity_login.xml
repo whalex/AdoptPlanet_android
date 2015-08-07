@@ -30,7 +30,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Please login to your account"
             android:id="@+id/textView4"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -67,7 +68,8 @@
             android:text="or"
             android:id="@+id/textView3"
             android:layout_gravity="center_horizontal"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textColor="@color/white"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -111,7 +113,7 @@
             android:id="@+id/textView"
 
             android:layout_marginTop="15dp"
-            />
+            android:textColor="@color/white"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -119,7 +121,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/create_account"
             android:id="@+id/textView2"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </RelativeLayout>

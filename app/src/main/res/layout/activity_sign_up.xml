@@ -27,7 +27,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Sign up via"
             android:id="@+id/textView4"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -67,7 +68,8 @@
             android:text="or"
             android:id="@+id/textView3"
             android:layout_gravity="center_horizontal"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:textColor="@color/white"/>
 
         <EditText
             android:layout_width="match_parent"

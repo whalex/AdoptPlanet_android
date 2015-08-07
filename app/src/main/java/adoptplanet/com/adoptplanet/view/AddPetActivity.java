@@ -43,7 +43,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import adoptplanet.com.adoptplanet.R;
-import adoptplanet.com.adoptplanet.controller.AlertBuilder;
 import adoptplanet.com.adoptplanet.model.CacheHolder;
 import adoptplanet.com.adoptplanet.model.CurrentUser;
 import adoptplanet.com.adoptplanet.model.Pet;
@@ -136,29 +135,12 @@ public class AddPetActivity extends AppCompatActivity {
 
         }
 
-        completeList = CacheHolder.getListByType(temp_pet.type);
+        completeList = new ArrayList<>();
         completeAdapter = new ArrayAdapter<>(this,
                         android.R.layout.simple_dropdown_item_1line, completeList);
 
         breed_actv.setAdapter(completeAdapter);
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_add_pet, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void handleSubmit(View view) {
@@ -379,6 +361,7 @@ public class AddPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String curr = ((TextView)((LinearLayout) v).getChildAt(0)).getText().toString();
+                Log.d(TAG, "CURR: " + curr);
                 int index = -1;
                 for (int i = 0; i < types.length; i++){
                     String type = types[i];
@@ -399,7 +382,12 @@ public class AddPetActivity extends AppCompatActivity {
 
                     temp_pet.breed = -1;
                     breed_actv.setText("");
-                    completeList = CacheHolder.getListByType(temp_pet.type);
+                    Log.d(TAG, "type: " + temp_pet.type);
+                    ArrayList<String> res = CacheHolder.getListByType(temp_pet.type);
+                    Log.d(TAG, "List: " + res);
+                    completeList = res;
+                    completeAdapter.clear();
+                    completeAdapter.addAll(res);
                     completeAdapter.notifyDataSetChanged();
                 }
                 dialog_type.dismiss();
@@ -419,6 +407,7 @@ public class AddPetActivity extends AppCompatActivity {
                 .create();
 
         temp_pet.type = -1;
+        type_tv.setText(context.getResources().getString(R.string.choose_type));
         dialog_type.show();
     }
 

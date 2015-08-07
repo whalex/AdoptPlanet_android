@@ -62,6 +62,7 @@
     <string name="title_activity_other_profile">OtherProfileActivity</string>
     <string name="title_activity_launch">LaunchActivity</string>
     <string name="title_activity_invite">InviteActivity</string>
+    <string name="title_activity_add_shelter">AddShelterActivity</string>
 
 
 </resources>

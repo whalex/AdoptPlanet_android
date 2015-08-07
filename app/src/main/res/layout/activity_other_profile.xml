@@ -40,7 +40,8 @@
                     android:text="Send Message"
                     android:id="@+id/button"
                     android:background="@color/orange"
-                    android:layout_margin="5dp"/>
+                    android:layout_margin="5dp"
+                    android:textColor="@color/white"/>
 
                 <Button
                     android:layout_width="match_parent"
@@ -48,7 +49,8 @@
                     android:text="Donate"
                     android:id="@+id/button2"
                     android:layout_margin="5dp"
-                    android:background="@color/gray_l"/>
+                    android:background="@color/gray_l"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
