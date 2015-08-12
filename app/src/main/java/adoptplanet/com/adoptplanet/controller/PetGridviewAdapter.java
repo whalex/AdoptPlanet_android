@@ -1,6 +1,7 @@
 package adoptplanet.com.adoptplanet.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import adoptplanet.com.adoptplanet.R;
 import adoptplanet.com.adoptplanet.model.Pet;
 import adoptplanet.com.adoptplanet.utils.CircleTransform;
+import adoptplanet.com.adoptplanet.view.StartingScreenActivity;
 
 /**
  * Created by Alexeich on 13.07.2015.
@@ -61,6 +63,7 @@ public class PetGridviewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.z_gridview_pet, null);
             convertView.setTag(handler);
 
+            handler.layout = (RelativeLayout) convertView.findViewById(R.id.layout);
             handler.photo = (ImageView) convertView.findViewById(R.id.z_gridview_photo);
             handler.icon = (ImageView) convertView.findViewById(R.id.z_gridview_icon);
             handler.name = (TextView) convertView.findViewById(R.id.z_gridview_name);
@@ -85,11 +88,20 @@ public class PetGridviewAdapter extends BaseAdapter {
                     .into(handler.photo);
 
 
+        handler.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, StartingScreenActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
         return convertView;
     }
 
     class Handler {
 
+        RelativeLayout layout;
         ImageView photo;
         ImageView icon;
         TextView name;

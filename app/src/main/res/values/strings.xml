@@ -10,13 +10,17 @@
     <string name="username">Username</string>
     <string name="log_in">Log in</string>
     <string name="e_mail">E-Mail</string>
+    <string name="send">Send</string>
     <string name="next">Next</string>
     <string name="password">Password</string>
+    <string name="repeat_password">Repeat password</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_sign_up_choose">SignUpChooseActivity</string>
+
+    <string name="reset_pass_alert_text">In your email sent instructions on how to reset your password</string>
 
     <string name="pet_account_description_1">
         Pets have the right to socialize too.
@@ -63,6 +67,7 @@
     <string name="title_activity_launch">LaunchActivity</string>
     <string name="title_activity_invite">InviteActivity</string>
     <string name="title_activity_add_shelter">AddShelterActivity</string>
+    <string name="title_activity_email_reset">EmailResetActivity</string>
 
 
 </resources>

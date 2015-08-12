@@ -63,9 +63,8 @@ public class StartingScreenActivity extends Activity {
         indicator.setStrokeWidth(0);
         indicator.setViewPager(pager);
 
-        // load breeds
-        DataParser.uploadBreeds(this, Pet.TYPE_CAT);
-        DataParser.uploadBreeds(this, Pet.TYPE_DOG);
+//        DataParser.uploadBreeds(this, Pet.TYPE_CAT);
+//        DataParser.uploadBreeds(this, Pet.TYPE_DOG);
 
     }
 

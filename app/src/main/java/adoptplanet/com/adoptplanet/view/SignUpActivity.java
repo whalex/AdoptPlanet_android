@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,11 +43,14 @@ public class SignUpActivity extends Activity {
     @Bind(R.id.sign_up_email) EditText email_edit;
     @Bind(R.id.sign_up_password) EditText password_edit;
     @Bind(R.id.sign_up_username) EditText username_edit;
+    @Bind(R.id.sign_up_password_rep) EditText password_rep_edit;
+    @Bind(R.id.sign_up_terms) CheckBox terms_check;
 
     public static ParseUser to_register;
     private int type = 1;
     private final Context context = this;
 
+    private int error_code = 209;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,46 +67,42 @@ public class SignUpActivity extends Activity {
     public void handleSignUp(View view) {
         String username = username_edit.getText().toString();
         String password = password_edit.getText().toString();
+        String password_rep = password_rep_edit.getText().toString();
         String email = email_edit.getText().toString();
 
-        if (username != null && password != null && email != null){
-            // todo normal input check
 
 
-            to_register.put("username_", username);
-            to_register.setUsername(email);
-            to_register.setEmail(email);
-            to_register.setPassword(password);
-
-            LayoutInflater inflater = getLayoutInflater();
-
-            LinearLayout lay = (LinearLayout) inflater.inflate(R.layout.alert_term, null);
-
-            final TextView tv = (TextView) lay.findViewById(R.id.text);
-            final Button but = (Button) lay.findViewById(R.id.accept);
-
-            final AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setView(lay)
-                    .setCancelable(true)
-                    .create();
-
-            but.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                    showChooseAcc();
-                }
-            });
-
-            dialog.show();
-        }
-        else{
-            AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setMessage("Error!\nCheck your input.")
-                    .create();
-            dialog.show();
+        if (username.length() == 0){
+            Toast.makeText(this, "Enter username!", Toast.LENGTH_LONG).show();
+            return;
         }
 
+        if (password.length() == 0){
+            Toast.makeText(this, "Enter password!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (email.length() == 0){
+            Toast.makeText(this, "Enter email!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!password.equals(password_rep)){
+            Toast.makeText(this, "Wrong repeated password!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!terms_check.isChecked()){
+            Toast.makeText(this, "Accept terms and conditions!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        to_register.put("username_", username);
+        to_register.setUsername(email);
+        to_register.setEmail(email);
+        to_register.setPassword(password);
+
+        showChooseAcc();
     }
 
     private int getType(){
@@ -149,7 +149,7 @@ public class SignUpActivity extends Activity {
                             }
                         }
                     });
-
+                    
                 }
                 else if(id == R.id.user_lay){
                     if (getType() == 2){
@@ -196,30 +196,74 @@ public class SignUpActivity extends Activity {
     }
 
     private void signUp(){
+        Log.d(TAG, "Sign Up started");
+
         to_register.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
-                if (e == null){
-                    Toast.makeText(context, "Registration succesful", Toast.LENGTH_LONG).show();
+                if (e == null) {
+                    error_code = 0;
+                    Toast.makeText(context, "Registration successful", Toast.LENGTH_LONG).show();
                     CurrentUser.email = to_register.getEmail();
                     CurrentUser.id = to_register.getObjectId();
                     Log.d(TAG, "Email: " + CurrentUser.email + " ID: " + CurrentUser.id);
 
-                    Intent intent = new Intent(context, RegistrationFollowActivity.class);
-                    startActivity(intent);
-                }
-                else{
-                    Log.d("SignUpActivity", "CODE: " + e.getCode());
-                    e.printStackTrace();
-                    String mess = CodeHandler.getByCode(e.getCode());
-                    if (mess != null)
-                        Toast.makeText(context, mess, Toast.LENGTH_LONG).show();
-                    else
-                        Toast.makeText(context, "Error code: " + e.getCode(), Toast.LENGTH_LONG).show();
+                    if (getType() == 1) {
+                        Intent intent = new Intent(context, RegistrationFollowActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(context, AddShelterActivity.class);
+                        startActivity(intent);
+                    }
 
+                } else {
+                    error_code = e.getCode();
+
+                    if (error_code == 209) {
+                        Log.d(TAG, "LOGGING OUT");
+                        ParseUser.logOut();
+                        Log.d(TAG, "LOGGED OUT");
+                        signUp();
+                    } else {
+
+                        Log.d("SignUpActivity", "CODE: " + error_code);
+                        e.printStackTrace();
+                        String mess = CodeHandler.getByCode(error_code);
+                        if (mess != null)
+                            Toast.makeText(context, mess, Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(context, "Error code: " + e.getCode(), Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
+
     }
 
+
+    public void handleCheckbox(View v){
+        terms_check.setChecked(false);
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        LinearLayout lay = (LinearLayout) inflater.inflate(R.layout.alert_term, null);
+
+        final TextView tv = (TextView) lay.findViewById(R.id.text);
+        final Button but = (Button) lay.findViewById(R.id.accept);
+
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(lay)
+                .setCancelable(true)
+                .create();
+
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                terms_check.setChecked(true);
+            }
+        });
+
+        dialog.show();
+    }
 }

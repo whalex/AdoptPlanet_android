@@ -83,6 +83,10 @@
             android:name=".view.AddShelterActivity"
             android:label="@string/title_activity_add_shelter" >
         </activity>
+        <activity
+            android:name=".view.EmailResetActivity"
+            android:label="@string/title_activity_email_reset" >
+        </activity>
     </application>
 
 </manifest>

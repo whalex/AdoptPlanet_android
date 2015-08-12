@@ -22,6 +22,11 @@
             android:minHeight="?attr/actionBarSize"
             android:background="@color/blue" >
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/z_mini_logo_icon"
+                android:layout_height="32dp"/>
         </android.support.v7.widget.Toolbar>
 
         <TabHost
@@ -66,7 +71,7 @@
                             android:layout_height="match_parent"
                             android:id="@+id/main_feed_petlist_grid"
                             android:numColumns="3"
-                            android:background="@color/gray_l"/>
+                            android:background="@color/list_bg"/>
 
 
                     </LinearLayout>

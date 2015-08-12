@@ -84,25 +84,16 @@
                 android:layout_marginLeft="10dp"
                 android:textSize="22sp"/>
 
-            <TextView
+            <AutoCompleteTextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="pick adress"
-                android:id="@+id/add_shelter_address_tv"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="2"
-                android:textColor="@color/gray"
-                android:gravity="center_horizontal"
+                android:layout_height="match_parent"
+                android:id="@+id/add_shelter_address"
+                android:layout_weight="1"
+                android:hint="enter here"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:textSize="22sp"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView31"
-                android:src="@drawable/z_arrow_right"
-                android:layout_marginRight="5dp"/>
         </LinearLayout>
 
         <Button
@@ -134,5 +125,43 @@
             android:layout_below="@+id/add_shelter_name"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white"
+            android:onClick="handleType"
+            android:gravity="center_vertical"
+            android:id="@+id/linearLayout4"
+            android:layout_below="@+id/add_shelter_address_lay"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Zip-code"
+                android:id="@+id/textView51"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:textSize="22sp"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/add_shelter_zipcode"
+                android:layout_weight="1"
+                android:hint="enter here"
+                android:textSize="22sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

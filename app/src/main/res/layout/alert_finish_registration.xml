@@ -49,6 +49,7 @@
         android:id="@+id/alert_finish_reg_finish_b"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
+        android:textColor="@color/white"
         android:background="@color/orange"
         android:layout_marginTop="20dp"/>
 </LinearLayout>

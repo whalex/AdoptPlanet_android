@@ -6,6 +6,9 @@
         <!--<item name="colorControlNormal">@color/white</item>-->
         <!--<item name="colorControlActivated">@color/white</item>-->
         <!--<item name="colorControlHighlight">@color/white</item>-->
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
         <item name="android:actionBarItemBackground">@drawable/selectable_background_example</item>
         <item name="actionBarTabStyle">@style/ActionBarTabStyle.Example</item>
         <item name="actionBarItemBackground">@drawable/selectable_background_example</item>
@@ -17,7 +20,7 @@
     </style>
 
     <style name="ActionBarTabStyle.Example" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
-        <item name="android:background">@drawable/tab_indicator_ab_example</item>
+        <item name="android:background">@drawable/tab_indicator_ab</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:colorBackground">@color/blue</item>
     </style>

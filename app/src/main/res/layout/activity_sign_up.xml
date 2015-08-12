@@ -105,6 +105,25 @@
             android:textColorHint="@color/white"
             android:textColor="@color/white"/>
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/sign_up_password_rep"
+            android:hint="@string/repeat_password"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"/>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="I accept terms and conditions"
+            android:id="@+id/sign_up_terms"
+            android:onClick="handleCheckbox"
+            android:layout_marginTop="5dp"
+            android:checked="false"/>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,7 +138,7 @@
             android:topRightRadius="20dp"
             android:onClick="handleSignUp"
             android:textColor="@color/white"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="25dp"/>
 
     </LinearLayout>
 </RelativeLayout>

@@ -103,7 +103,6 @@ public class DataParser {
                 where.add(readed);
                 counter++;
             }
-            size_int = where.size();
         }
         catch(IOException e){Log.e(TAG, "File not found. Name: " + file_name);}
         catch(Exception e){e.printStackTrace();}

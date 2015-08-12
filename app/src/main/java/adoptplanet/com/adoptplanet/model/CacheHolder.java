@@ -14,6 +14,7 @@ import adoptplanet.com.adoptplanet.R;
  */
 public class CacheHolder {
 
+
     public static ArrayList<Activity> registration_pool = new ArrayList<>();
 
 

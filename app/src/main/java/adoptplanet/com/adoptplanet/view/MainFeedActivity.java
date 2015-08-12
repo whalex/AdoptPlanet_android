@@ -3,6 +3,7 @@ package adoptplanet.com.adoptplanet.view;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 
 
@@ -38,6 +40,7 @@ import adoptplanet.com.adoptplanet.controller.EventListAdapter;
 import adoptplanet.com.adoptplanet.controller.PetGridviewAdapter;
 import adoptplanet.com.adoptplanet.model.Event;
 import adoptplanet.com.adoptplanet.model.Pet;
+import adoptplanet.com.adoptplanet.utils.FontHolder;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -61,7 +64,8 @@ public class MainFeedActivity extends AppCompatActivity {
     ArrayList<Pet> pet_list = new ArrayList<>();
     ArrayList<Event> event_list = new ArrayList<>();
 
-
+//    private Typeface bold_t = FontHolder.getBold(this);
+//    private Typeface light_t = FontHolder.getLight(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,15 +73,19 @@ public class MainFeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_feed);
         ButterKnife.bind(this);
 
+        Typeface reg_t = Typeface.createFromAsset(getAssets(), "RobotoRegular.ttf");
+        Typeface bold_t = Typeface.createFromAsset(getAssets(), "RobotoBold.ttf");
+        Typeface light_t = Typeface.createFromAsset(getAssets(), "RobotoLight.ttf");
 
         th.setup();
-        TabHost.TabSpec ts = th.newTabSpec("Pets");
+        TabHost.TabSpec ts = th.newTabSpec("ADOPT");
         ts.setContent(R.id.tab1);
-        ts.setIndicator("Pets");
+        ts.setIndicator("ADOPT");
+
         th.addTab(ts);
-        ts = th.newTabSpec("Events");
+        ts = th.newTabSpec("EVENT");
         ts.setContent(R.id.tab2);
-        ts.setIndicator("Events");
+        ts.setIndicator("EVENT");
         th.addTab(ts);
 
         LayoutInflater inflater = getLayoutInflater();
@@ -98,7 +106,6 @@ public class MainFeedActivity extends AppCompatActivity {
         action_bar.setDefaultDisplayHomeAsUpEnabled(true);
         action_bar.setHomeAsUpIndicator(R.drawable.z_menu_icon);
         action_bar.setDisplayUseLogoEnabled(true);
-        action_bar.setLogo(R.drawable.z_action_bar_logo_fixed);
         action_bar.setTitle("");
         action_bar.setDisplayShowHomeEnabled(true);
         //action_bar.setDisplayHomeAsUpEnabled(true);
@@ -151,6 +158,21 @@ public class MainFeedActivity extends AppCompatActivity {
             TextView tv = (TextView) th.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
             tv.setTextColor(getResources().getColor(R.color.white));
         }
+
+        TabWidget widget = th.getTabWidget();
+        for(int i = 0; i < widget.getChildCount(); i++) {
+            View v = widget.getChildAt(i);
+
+            Log.d(TAG, "V" + i + ": " + v);
+            TextView tv = (TextView)v.findViewById(android.R.id.title);
+            if(tv == null) {
+                continue;
+            }
+            tv.setTextSize(15);
+            tv.setTypeface(reg_t);
+            v.setBackgroundResource(R.drawable.tab_indicator_ab);
+        }
+
     }
 
     @Override
