@@ -7,8 +7,10 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,6 +41,7 @@ import java.util.List;
 import adoptplanet.com.adoptplanet.R;
 import adoptplanet.com.adoptplanet.controller.EventListAdapter;
 import adoptplanet.com.adoptplanet.controller.PetGridviewAdapter;
+import adoptplanet.com.adoptplanet.controller.SidebarAdapter;
 import adoptplanet.com.adoptplanet.model.Event;
 import adoptplanet.com.adoptplanet.model.Pet;
 import adoptplanet.com.adoptplanet.utils.FontHolder;
@@ -63,6 +67,10 @@ public class MainFeedActivity extends AppCompatActivity {
 
     ArrayList<Pet> pet_list = new ArrayList<>();
     ArrayList<Event> event_list = new ArrayList<>();
+
+    private DrawerLayout mDrawerLayout;
+    private ListView mSidebar;
+    private ActionBarDrawerToggle mDrawerToggle;
 
 //    private Typeface bold_t = FontHolder.getBold(this);
 //    private Typeface light_t = FontHolder.getLight(this);
@@ -100,15 +108,33 @@ public class MainFeedActivity extends AppCompatActivity {
 //            }
 //        });
 
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
+        mSidebar = (ListView)findViewById(R.id.sidebar);
+
+        toolbar = (Toolbar) findViewById(R.id.main_feed_toolbar);
         setSupportActionBar(toolbar);
+
         ActionBar action_bar = getSupportActionBar();
-        action_bar.setDefaultDisplayHomeAsUpEnabled(true);
         action_bar.setHomeAsUpIndicator(R.drawable.z_menu_icon);
         action_bar.setDisplayUseLogoEnabled(true);
         action_bar.setTitle("");
         action_bar.setDisplayShowHomeEnabled(true);
-        //action_bar.setDisplayHomeAsUpEnabled(true);
+        action_bar.setDisplayHomeAsUpEnabled(true);
+
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                mDrawerLayout,
+                toolbar,
+                R.string.app_name,
+                R.string.app_name
+        );
+
+        /*mSidebar.setAdapter(new SidebarAdapter(this,
+                getResources().getStringArray(R.array.sidebar_items)),
+                //todo add sidebar icon array
+        );*/
+
 
         pet_adapter = new PetGridviewAdapter(this, pet_list);
         pet_grid_view.setAdapter(pet_adapter);

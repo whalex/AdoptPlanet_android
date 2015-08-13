@@ -10,6 +10,7 @@ public class CurrentUser {
     public static final int LOAD_LIMIT = 30;
 
     public static String id;
+    public static String name;
     public static String email;
     private static String pass;
 

@@ -177,4 +177,12 @@
 
     </RelativeLayout>
 
+    <ListView
+        android:id="@+id/sidebar"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:background="@color/white"
+        />
 </android.support.v4.widget.DrawerLayout>

@@ -69,5 +69,16 @@
     <string name="title_activity_add_shelter">AddShelterActivity</string>
     <string name="title_activity_email_reset">EmailResetActivity</string>
 
-
+    <string-array name="sidebar_items">
+        <item>HEAD</item>
+        <item>Adopt a pet</item>
+        <item>Messages</item>
+        <item>Friends</item>
+        <item>My pets</item>
+        <item>Invite</item>
+        <item>My Ivents</item>
+        <item>Help</item>
+        <item>Buy Credits</item>
+        <item>Settings</item>
+    </string-array>
 </resources>

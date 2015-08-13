@@ -4,4 +4,23 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:id="@+id/itemImageView"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/itemTextView"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
 </LinearLayout>
